@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>winMain</title>
+
+
+<style>
+
+#mask{
+
+	overflow : hidden;
+	border : 1px solid red;
+
+
+}
+
+
+</style>
+
+<script src="./Windows.js"></script>
+<script src="./SelectBox.js"></script>
+<script src="./TankFn.js"></script>
+<script src="./BulletFn.js"></script>
+<script src="./GameFn.js"></script>
+<script src="./MapFn.js"></script>
+<script src="./Tanks.js"></script>
+<script src="./Maps.js"></script>
+<script src="./Items.js"></script>
+<script src="./SignIn.js"></script>
+<script src="./Gauge.js"></script>
+
+<script>
+
+/***********************************************************************
+				창 div 전역 변수 설정 창의 크기 설정
+************************************************************************/
+
+var wrapper;
+var map;
+var mapPlate;
+
+var s_wid=1240;
+var s_hei=900;
+
+
+/***********************************************************************
+				블록 배열 설정
+************************************************************************/
+
+var blockArr1 = new Array();
+var blockArr2 = new Array();
+var blockArr3 = new Array();
+var blockArr4 = new Array();
+var blockArr5 = new Array();
+
+var blockArr = new Array( blockArr1, blockArr2, blockArr3, blockArr4, blockArr5 );
+
+
+/***********************************************************************
+				맵 인스턴스 생성
+************************************************************************/
+
+var overTheCloudMap= new overTheCloudMap();
+var theCastleMap= new theCastleMap();
+var theRuinedCityMap= new theRuinedCityMap();
+var theForestMap= new theForestMap();
+var theNightMap= new theNightMap();
+var theDesertMap= new theDesertMap();
+
+var mapArr= new Array( overTheCloudMap, theCastleMap, theRuinedCityMap, theForestMap, theNightMap, theDesertMap );
+
+
+/***********************************************************************
+				탱크 인스턴스 생성
+************************************************************************/
+
+var randomTank= new randomTank();
+var cannonTank= new cannonTank();
+var dukeTank= new dukeTank();
+var octopusTank= new octopusTank();
+var missileTank= new missileTank();
+var starTank= new starTank();
+
+var tankArr = [ randomTank, cannonTank, dukeTank, octopusTank, missileTank, starTank ];
+
+
+/***********************************************************************
+				아이템 인스턴스 생성
+************************************************************************/
+
+var itemFixHp = new itemFixHp();
+var itemDoubleShot = new itemDoubleShot();
+var itemPowerUp = new itemPowerUp();
+var itemMoveLock = new itemMoveLock();
+
+var itemArr = new Array( itemFixHp, itemDoubleShot, itemPowerUp, itemMoveLock );
+
+
+/***********************************************************************
+				거푸집 전역변수 선언
+************************************************************************/
+
+var tankFn;
+var mapFn;
+var itemFn;
+var tankMove;
+var bulletFn;
+
+
+/***********************************************************************
+				맵으로 불러들일 데이터 배열화
+************************************************************************/
+
+var getTankArr = new Array(2);
+var gameTankArr = new Array(2);
+var getMap;
+var getItemArrP1 = new Array(4);
+var getItemArrP2 = new Array(4);
+
+
+
+/***********************************************************************
+				그 외 변수와 함수들의 전역화
+************************************************************************/
+
+var key;
+
+
+var gameMap;
+
+var bulletPower= new bulletPower();
+
+
+var startFlag=false;
+var turn=true;
+var side1=true;
+var side2=true;
+var count1=false;
+var count2=false;
+var spaceFlag=1;
+
+
+var bulletP1;
+var bulletP2;
+
+
+var angleX=0;
+var angleY=0;
+var angleX1=0;
+var angleY1=0;
+var angleX2=0;
+var angleY2=0;
+
+
+var mapLeft=0;
+var mapTop=0;
+var mapPosX=0;
+var mapPosY=0;
+
+
+var helicopter;
+var dropItem;
+
+var ranT=parseInt(Math.random()*5+1);
+var birthX1=Math.random()*3000;
+var birthY1=10;
+var birthX2=Math.random()*3000;
+var birthY2=10;
+var tankWidth=70;
+var tankHeight=70;
+var velX=0;
+var velY=0;
+var gravity=0.1;
+var shotPw=0;
+var speed=0;
+var cal=0;
+
+
+/***********************************************************************
+				시작 시 로드 시킬 것들
+************************************************************************/
+
+window.addEventListener("load", function(){
+
+	init();
+
+});
+
+
+/***********************************************************************
+				시작 시 로드 시킬 init 함수
+************************************************************************/
+
+function init(){
+
+	wrapper = document.getElementById("wrapper");
+	mask = document.getElementById("mask");
+	//mapPlate = document.getElementById("mapPlate");
+	gameWin = document.createElement("div");
+	map = document.createElement("div");
+	
+	mask.style.width=s_wid+"px";
+	mask.style.height=s_hei+"px";
+	mask.style.margin="auto";
+
+	//mapPlate.style.width=3000+"px";
+	//mapPlate.style.height=2000+"px";
+	//mapPlate.style.position="relative";
+	//mapPlate.style.display="none";
+
+	gameWin.style.width=s_wid+"px";
+	gameWin.style.height=s_hei+"px";
+	gameWin.style.position="relative";
+
+	map.style.width=3000+"px";
+	map.style.height=2000+"px";
+	map.style.position="relative";
+
+	winStart = new winStart(mask, gameWin, s_wid, s_hei );
+	winLogIn = new winLogIn(mask, gameWin, s_wid, s_hei );
+	winNotice = new winNotice(mask, gameWin, s_wid, s_hei );
+	winSelectMode = new winSelectMode(mask, gameWin, s_wid, s_hei );
+	winSelectContentsMul = new winSelectContentsMul(mask, gameWin, s_wid, s_hei );
+	//winSelectContentsSing = new winSelectContentsSing(mask, gameWin, s_wid, s_hei );
+	winItemShop = new winItemShop(mask, gameWin, s_wid, s_hei );
+	winLoadGame = new winLoadGame(mask, gameWin, s_wid, s_hei );
+	winGameWinner = new winGameWinner(mask, gameWin, s_wid, s_hei );
+
+	winStart.init();
+	winLogIn.init();
+	winNotice.init();
+	winSelectMode.init();
+	winSelectContentsMul.init();
+	//winSelectContentsSing.init();
+	winItemShop.init();
+	winLoadGame.init();
+	winGameWinner.init();
+
+	winStart.audio.init();
+
+	getMap = mapArr[0];
+
+	gameMap = new mapFn( mask, map, blockArr, getMap.bgSrc, getMap.bgmSrc, getMap.blockImg, getMap.windImg, getMap.blockSize, getMap.blockAreaX, getMap.blockAreaY, getMap.blockLen );
+
+	gameMap.init();
+
+	count1=true;
+	spaceFlag=true;
+
+	///helicopter = new helicopter( map, gravity, 70, parseInt(Math.random()*3000), -200 );
+
+	//helicopter.init();
+
+	//dropItem = new dropItem ( map, gravity, helicopter.dropSpotX , helicopter.dropSpotY, helicopter.dropDigit );
+
+	//dropItem.init();
+
+	
+	//fireAngle(bulletP1, 0.02);
+
+
+
+/***********************************************************************
+				
+				버튼 동작에 관련된 함수
+
+************************************************************************/
+
+/***********************************************************************
+				winStart 창
+************************************************************************/
+	winStart.stage.addEventListener("click", function(){
+	
+		winStart.audio.clear();
+		winStart.stage.style.display="none";
+
+		winLogIn.audio.init();
+		winLogIn.stage.style.display="block";
+	
+	});
+
+
+/***********************************************************************
+				winLogIn 창
+************************************************************************/
+
+	winLogIn.btLogIn.addEventListener("click", function(){
+
+		if( winLogIn.idBox.value=="" ){
+
+			alert("아이디를 입력해야지!!");
+			
+			winLogIn.idBox.focus();
+
+			return;
+
+		}else if( winLogIn.pwBox.value=="" ){
+
+			alert("패스워드는 왜 빼먹어?");
+			
+			winLogIn.idBox.focus();
+
+			return;
+
+		}else{
+
+			winLogIn.audio.clear();
+			winLogIn.stage.style.display="none";
+
+			winNotice.audio.init();
+			winNotice.stage.style.display="block";
+
+		}
+	
+	});
+
+	winLogIn.btSignIn.addEventListener("click", function(){
+
+		winLogIn.stage.removeChild(winLogIn.logInForm);
+
+		winLogIn.idBox.value="";
+		winLogIn.pwBox.value="";
+
+		winLogIn.signInForm.appendChild(winLogIn.idBox);
+		winLogIn.signInForm.appendChild(winLogIn.pwBox);
+		winLogIn.signInForm.appendChild(winLogIn.btBack);
+		winLogIn.signInForm.appendChild(winLogIn.btSubmit);
+
+		winLogIn.stage.appendChild(winLogIn.signInForm);
+	
+	});
+
+	winLogIn.btBack.addEventListener("click", function(){
+
+		var con = confirm("정말 취소할거임?");
+
+		if( con ){
+
+			winLogIn.stage.removeChild(winLogIn.signInForm);
+
+			winLogIn.logInForm.appendChild(winLogIn.idBox);
+			winLogIn.logInForm.appendChild(winLogIn.pwBox);
+			winLogIn.logInForm.appendChild(winLogIn.btLogIn);
+			winLogIn.logInForm.appendChild(winLogIn.btSignIn);
+
+			winLogIn.stage.appendChild(winLogIn.logInForm);
+
+			winLogIn.idBox.value="";
+			winLogIn.pwBox.value="";
+
+		}
+
+	});
+
+
+
+	winLogIn.btSubmit.addEventListener("click", function(){
+
+		if( winLogIn.idBox.value=="" ){
+
+			alert("아이디를 입력해야지!!");
+			
+			winLogIn.idBox.focus();
+
+			return;
+
+		}else if( winLogIn.pwBox.value=="" ){
+
+			alert("패스워드는 왜 빼먹어?");
+			
+			winLogIn.idBox.focus();
+
+			return;
+
+		}else{
+
+			alert(winLogIn.idBox.value+"의 가입을 축하해!!");
+
+			winLogIn.stage.removeChild(winLogIn.signInForm);
+
+			winLogIn.logInForm.appendChild(winLogIn.idBox);
+			winLogIn.logInForm.appendChild(winLogIn.pwBox);
+			winLogIn.logInForm.appendChild(winLogIn.btLogIn);
+			winLogIn.logInForm.appendChild(winLogIn.btSignIn);
+
+			winLogIn.stage.appendChild(winLogIn.logInForm);
+
+		}
+
+		winLogIn.idBox.value="";
+		winLogIn.pwBox.value="";
+	
+	});
+
+	winLogIn.btExit.addEventListener("click", function(){
+
+		var con = confirm("정말 종료할거임?");
+
+		if( con ){
+
+			close();
+
+		}
+	
+	});
+
+
+
+/***********************************************************************
+				winNotice 창
+************************************************************************/
+
+	winNotice.btStart.addEventListener("click", function(){
+
+		winNotice.audio.clear();
+		winNotice.stage.style.display="none";
+
+		winSelectMode.audio.init();
+		winSelectMode.stage.style.display="block";
+
+	});
+
+	winNotice.btBack.addEventListener("click", function(){
+
+		winNotice.audio.clear();
+		winNotice.stage.style.display="none";
+
+		winLogIn.audio.init();
+		winLogIn.stage.style.display="block";
+
+		winLogIn.idBox.value="";
+		winLogIn.pwBox.value="";
+
+	});
+
+
+	winNotice.btExit.addEventListener("click", function(){
+
+		var con = confirm("정말 종료할거임?");
+
+		if( con ){
+
+			close();
+
+		}
+	
+	});
+
+
+
+/***********************************************************************
+				winSelectMode 창
+************************************************************************/
+
+
+	winSelectMode.btMul.addEventListener("click", function(){
+
+		winSelectMode.audio.clear();
+		winSelectMode.stage.style.display="none";
+
+		winSelectContentsMul.audio.init();
+		winSelectContentsMul.stage.style.display="block";
+
+	});
+
+	winSelectMode.btSing.addEventListener("click", function(){
+
+		alert("준비 중이야 ㅜㅜ");
+
+		//winSelectMode.audio.clear();
+		//winSelectMode.stage.style.display="none";
+
+		//winSelectContentsSing.audio.init();
+		//winSelectContentsSing.stage.style.display="block";
+
+	});
+
+	winSelectMode.btBack.addEventListener("click", function(){
+
+		winSelectMode.audio.clear();
+		winSelectMode.stage.style.display="none";
+
+		winNotice.audio.init();
+		winNotice.stage.style.display="block";
+
+	});
+
+	winSelectMode.btExit.addEventListener("click", function(){
+
+		var con = confirm("정말 종료할거임?");
+
+		if( con ){
+
+			close();
+
+		}
+	
+	});
+
+
+
+
+/***********************************************************************
+				winSelectContentsMul 창
+************************************************************************/
+	
+
+	winSelectContentsMul.btStart.addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			winSelectContentsMul.btStart.value="Start";
+
+			startFlag=!startFlag;
+
+		}else if( startFlag ){
+
+			winSelectContentsMul.audio.clear();
+			winSelectContentsMul.stage.style.display="none";
+
+			winLoadGame.audio.init();
+			winLoadGame.stage.style.display="block";
+
+			startFlag=!startFlag;
+
+		}
+	
+	});
+
+	winSelectContentsMul.btShop.addEventListener("click", function(){
+
+		winSelectContentsMul.audio.clear();
+		winSelectContentsMul.stage.style.display="none";
+
+		winItemShop.audio.init();
+		winItemShop.stage.style.display="block";
+	
+	});
+
+	winSelectContentsMul.btBack.addEventListener("click", function(){
+
+		winSelectContentsMul.audio.clear();
+		winSelectContentsMul.stage.style.display="none";
+
+		winSelectContentsMul.img_tankP1.src="../images/effect/box.png";
+		winSelectContentsMul.img_tankP2.src="../images/effect/box.png";
+
+		winSelectContentsMul.btStart.value="Ready";
+		startFlag=false;
+
+		winSelectMode.audio.init();
+		winSelectMode.stage.style.display="block";
+	
+	});
+
+	winSelectContentsMul.btExit.addEventListener("click", function(){
+
+		var con = confirm("정말 종료할거임?");
+
+		if( con ){
+
+			close();
+
+		}
+	
+	});
+
+	winSelectContentsMul.bt_tankArr[0].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getTankArr[0]= tankArr[ranT];
+
+			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+
+		}else if( startFlag ){
+
+			getTankArr[1]= tankArr[ranT];
+
+			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+
+		}
+			
+	});
+
+	winSelectContentsMul.bt_tankArr[1].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getTankArr[0]= tankArr[1];
+
+			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+
+		}else if( startFlag ){
+
+			getTankArr[1]= tankArr[1];
+
+			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+
+		}
+	
+	});
+
+	winSelectContentsMul.bt_tankArr[2].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getTankArr[0]= tankArr[2];
+
+			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+
+		}else if( startFlag ){
+
+			getTankArr[1]= tankArr[2];
+
+			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+
+		}
+	
+	});
+
+	winSelectContentsMul.bt_tankArr[3].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getTankArr[0]= tankArr[3];
+
+			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+
+		}else if( startFlag ){
+
+			getTankArr[1]= tankArr[3];
+
+			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+
+		}
+	
+	});
+
+	winSelectContentsMul.bt_tankArr[4].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getTankArr[0]= tankArr[4];
+
+			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+
+		}else if( startFlag ){
+
+			getTankArr[1]= tankArr[4];
+
+			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+
+		}
+	
+	});
+
+	winSelectContentsMul.bt_tankArr[5].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getTankArr[0]= tankArr[5];
+
+			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+
+		}else if( startFlag ){
+
+			getTankArr[1]= tankArr[5];
+
+			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+
+		}
+	
+	});
+
+
+
+
+/***********************************************************************
+				winItemShop 창
+************************************************************************/
+
+
+	winItemShop.btOk.addEventListener("click", function(){
+
+		winItemShop.audio.clear();
+		winItemShop.stage.style.display="none";
+
+		winSelectContentsMul.audio.init();
+		winSelectContentsMul.stage.style.display="block";
+
+	});
+
+	winItemShop.btBack.addEventListener("click", function(){
+
+		winItemShop.audio.clear();
+		winItemShop.stage.style.display="none";
+
+		winSelectContentsMul.audio.init();
+		winSelectContentsMul.stage.style.display="block";	
+
+	});
+
+	winItemShop.bt_itemArr[0].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getItemArrP1[0]= itemArr[0];
+
+			winSelectContentsMul.img_itemP1Arr[0].src= itemArr[0].img;
+
+		}else if( startFlag ){
+
+			getItemArrP2[0]= itemArr[0];
+
+			winSelectContentsMul.img_itemP2Arr[0].src= itemArr[0].img;
+
+		}
+			
+	});
+
+	winItemShop.bt_itemArr[1].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getItemArrP1[1]= itemArr[1];
+
+			winSelectContentsMul.img_itemP1Arr[1].src= itemArr[1].img;
+
+		}else if( startFlag ){
+
+			getItemArrP2[1]= itemArr[1];
+
+			winSelectContentsMul.img_itemP2Arr[1].src= itemArr[1].img;
+
+		}
+			
+	});
+
+	winItemShop.bt_itemArr[2].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getItemArrP1[2]= itemArr[2];
+
+			winSelectContentsMul.img_itemP1Arr[2].src= itemArr[2].img;
+
+		}else if( startFlag ){
+
+			getItemArrP2[2]= itemArr[2];
+
+			winSelectContentsMul.img_itemP2Arr[2].src= itemArr[2].img;
+
+		}
+			
+	});
+
+	winItemShop.bt_itemArr[3].addEventListener("click", function(){
+
+		if( !startFlag ) {
+
+			getItemArrP1[3]= itemArr[3];
+
+			winSelectContentsMul.img_itemP1Arr[3].src= itemArr[3].img;
+
+		}else if( startFlag ){
+
+			getItemArrP2[3]= itemArr[3];
+
+			winSelectContentsMul.img_itemP2Arr[3].src= itemArr[3].img;
+
+		}
+			
+	});
+
+
+
+/***********************************************************************
+				winLoadGame 창
+************************************************************************/
+
+	winLoadGame.stage.addEventListener("click", function(){
+
+		winLoadGame.audio.clear();
+		winLoadGame.stage.style.display="none";
+
+		gameMap.audio.init();
+		console.log(mask);
+		console.log(map);
+		gameWin.style.display = "none";
+		mask.appendChild(map);
+		map.style.display="block";	
+
+		gameTankArr[0] = new tankFn(map, birthX1, birthY1, tankWidth, tankHeight, velX, velY, gravity, getTankArr[0].distance, getTankArr[0].fireAngle, getTankArr[0].defense, getTankArr[0].hp, getTankArr[0].damage, getTankArr[0].tankImg, getTankArr[0].deathImg, getTankArr[0].bulletImg, getTankArr[0].bulletWid, getTankArr[0].bulletHei);
+
+		gameTankArr[1] = new tankFn(map, birthX2, birthY2, tankWidth, tankHeight, velX, velY, gravity, getTankArr[1].distance, getTankArr[1].fireAngle, getTankArr[1].defense, getTankArr[1].hp, getTankArr[1].damage, getTankArr[1].tankImg, getTankArr[1].deathImg, getTankArr[1].bulletImg, getTankArr[1].bulletWid, getTankArr[1].bulletHei);
+		
+		gameTankArr[0].init();
+
+		gameTankArr[1].init();
+
+	});
+
+
+}
+
+
+
+/***********************************************************************
+				key 이벤트
+************************************************************************/
+
+window.addEventListener("keydown", function(){
+
+	if(turn && gameTankArr[0] != undefined){
+		
+		key=event.keyCode;
+
+		bulletP1 = new bulletFn(map, gameTankArr[0].x, gameTankArr[0].y, gravity, angleX, angleY, side1, gameTankArr[0].bulletImg, gameTankArr[0].damage, gameTankArr[0].bulletWid, gameTankArr[0].bulletHei);
+
+		bulletPower.init();
+
+		if(count1){
+
+			switch(key){
+			
+			case 32:
+
+				tankMove(gameTankArr[0], 0);
+
+				if( spaceFlag ){
+
+					bulletPower.begin();
+
+					spaceFlag=!spaceFlag;
+
+				}else if( !spaceFlag ){
+
+					bulletPower.fire();
+
+					console.log(bulletPower.firePower);
+
+					bulletP1.init();
+
+					count1=false;
+					count2=true;
+
+					//console.log(bulletPower.firePower);
+
+					bulletPower.end();
+
+					//console.log(bulletPower.firePower);
+
+					spaceFlag=!spaceFlag;
+
+				}
+
+				break;//스페이스바
+			
+			case 37:
+
+				side1=false;
+
+				tankMove( gameTankArr[0], -2);
+
+				gameTankArr[0].img.style.transform="rotateY(180deg)";
+				
+				break;
+			
+			case 39:
+
+				side1=true;
+
+				tankMove(gameTankArr[0],2);
+
+				gameTankArr[0].img.style.transform="rotateY(0deg)";
+				
+				break;
+				
+			case 38:
+
+				fireAngle( bulletP1, 0.02 );
+
+				console.log(bulletP1.angleX+" , "+bulletP1.angleY);
+
+				break;
+			
+			case 40:
+
+				fireAngle( bulletP1, -0.02 );
+
+				console.log(bulletP1.angleX+" , "+bulletP1.angleY);
+
+				break;
+
+			}
+
+		}
+
+	}else if(!turn && gameTankArr[0] != undefined){
+		
+		key=event.keyCode;
+
+		bulletP2 = new bulletFn(map, gameTankArr[1].x, gameTankArr[1].y, gravity, angleX, angleY, side2, gameTankArr[1].bulletImg, gameTankArr[1].damage, gameTankArr[1].bulletWid, gameTankArr[1].bulletHei);
+
+		bulletPower.init();
+
+		if(count2){
+
+			switch(key){
+			
+			case 32:
+
+				tankMove(gameTankArr[1], 0);
+
+				if( spaceFlag ){
+
+					bulletPower.begin();
+
+					spaceFlag=!spaceFlag;
+
+				}else if( !spaceFlag ){
+
+					bulletPower.fire();
+
+					console.log(bulletPower.firePower);
+
+					bulletP2.init();
+
+					count1=true;
+					count2=false;
+
+					console.log(bulletPower.firePower);
+
+					bulletPower.end();
+
+					console.log(bulletPower.firePower);
+
+					spaceFlag=!spaceFlag;
+
+				}
+
+				break;//스페이스바
+			
+			case 37:
+
+				side2=false;
+
+				tankMove( gameTankArr[1], -2);
+
+				gameTankArr[1].img.style.transform="rotateY(180deg)";
+				
+				break;
+			
+			case 39:
+
+				side2=true;
+
+				tankMove(gameTankArr[1],2);
+
+				gameTankArr[1].img.style.transform="rotateY(0deg)";
+				
+				break;
+				
+			case 38:
+
+				fireAngle( bulletP2, 0.02 );
+
+				console.log(bulletP2.angleX+" , "+bulletP2.angleY);
+
+				break;
+			
+			case 40:
+
+				fireAngle( bulletP2, -0.02 );
+
+				console.log(bulletP2.angleX+" , "+bulletP2.angleY);
+
+				break;
+
+			}
+
+		}
+
+	}
+
+
+
+});
+
+
+/***********************************************************************
+				key 이벤트
+************************************************************************/
+
+
+window.addEventListener("keyup", function(){
+
+	if(turn && gameTankArr[0] != undefined){
+
+		key=event.keyCode;
+
+		if(key==37 || key==39){
+		
+			gameTankArr[0].velX=0;
+		
+			speed=0;
+		
+		}
+
+	}else if(!turn && gameTankArr[0] != undefined){
+
+		key=event.keyCode;
+
+		if(key==37 || key==39){
+		
+			gameTankArr[1].velX=0;
+		
+			speed=0;
+		
+		}
+
+	}
+
+});
+
+
+
+/***********************************************************************
+				맵 움직이는 이벤트
+************************************************************************/
+
+
+window.addEventListener("mousemove", function(){
+
+	var entX=event.clientX;
+	var entY=event.clientY;
+
+	//console.log(entX+" , "+entY);
+
+	if ( gameTankArr[0] != undefined ){
+
+		if( (entX > 1230) && mapPosX>-1760 ){
+
+			mapLeft=-20;
+			mapTop=0;
+
+			mapPosX+=mapLeft;
+			mapPosY+=mapTop;
+
+			//map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
+
+			map.style.left=mapPosX+"px";
+			map.style.top=mapPosY+"px";
+
+		}
+		
+		if( (entX < 10) && mapPosX<0 ){
+
+			mapLeft=20;
+			mapTop=0;
+
+			mapPosX+=mapLeft;
+			mapPosY+=mapTop;
+
+			//map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
+
+			map.style.left=mapPosX+"px";
+			map.style.top=mapPosY+"px";
+
+		}
+
+		if( (entY > 890) && mapPosY>-1100 ){
+
+			mapLeft=0;
+			mapTop=-10;
+
+			mapPosX+=mapLeft;
+			mapPosY+=mapTop;
+
+			//map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
+
+			map.style.left=mapPosX+"px";
+			map.style.top=mapPosY+"px";
+
+		}
+		
+		if( (entY < 10) && mapPosY<0 ){
+
+			mapLeft=0;
+			mapTop=10;
+
+			mapPosX+=mapLeft;
+			mapPosY+=mapTop;
+
+			//map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
+
+			map.style.left=mapPosX+"px";
+			map.style.top=mapPosY+"px";
+
+
+		}
+
+		if( ( (entX < 1230) && mapPosX<-1760) && ( (entX > 10) && mapPosX>0 ) &&  ( (entY < 890) && mapPosY<-1100 ) && ( (entY > 10) && mapPosY>0 ) ){
+
+			mapLeft=0;
+			mapTop=0;
+
+			mapPosX+=mapLeft;
+			mapPosY+=mapTop;
+
+			//map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
+
+			map.style.left=mapPosX+"px";
+			map.style.top=mapPosY+"px";
+
+		}
+
+		PosX=mapPosX;
+		PosY=mapPosY;
+
+		//console.log(mapPosX);
+		//console.log(PosX);
+
+	}
+
+});
+
+
+</script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+	<div id="mask">
+
+	</div>
+
+</div>
+
+</body>
+</html>
+
+<!-- -->
