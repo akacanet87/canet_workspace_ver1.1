@@ -31,6 +31,8 @@ var winStart = function ( mask, gameWin, stageW, stageH ){			// stage로부터 s
 	this.height=stageH;
 	this.audioSrc="../music/start.mp3";
 	this.audio = new audioCtrl(this.audioSrc);
+	this.banner;
+	this.blink=true;
 	this.stageDis="block";
 	var me = this; 
 
@@ -42,12 +44,46 @@ var winStart = function ( mask, gameWin, stageW, stageH ){			// stage로부터 s
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin=0+"px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";							//	배경이미지 소스
+		this.stage.style.backgroundImage="url('../images/bg/winStart.png')";							//	배경이미지 소스
+		this.stage.style.textAlign="center";
 		this.stage.style.display="block";
+		
+
+		this.banner = document.createElement("img");
+		
+		this.banner.style.width=this.width/3+"px";
+		this.banner.style.height=100+"px";
+		this.banner.style.position="absolute";
+		this.banner.style.margin="auto";
+		this.banner.style.top=this.height+"px";
+		this.banner.src="../images/bg/banner.png";
+		this.banner.style.display="none";
+
+		this.stage.appendChild(this.banner);
 
 		this.gameWin.appendChild(this.stage);
 
 		this.mask.appendChild(this.gameWin);
+
+	}
+
+	this.move = function(){
+
+		if( this.blink=!this.blink ){
+
+			this.banner.style.display="none";
+
+			this.blink=!this.blink 
+
+		}else{
+
+			this.banner.style.display="block";
+
+			this.blink=!this.blink 
+
+		}
+			
+		setTimeout("move()", 200);
 
 	}
 
@@ -99,7 +135,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin=0+"px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";	
+		this.stage.style.backgroundImage="url('../images/bg/logIn.png')";	
 		this.stage.style.display="none";
 
 		this.logInForm.style.width=this.width/2+"px";
@@ -139,44 +175,40 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.pwBox.style.fontSize="36pt";
 
 		this.btLogIn.type="button";
-		this.btLogIn.style.width=200+"px";
+		this.btLogIn.style.width=150+"px";
 		this.btLogIn.style.height=70+"px";
 		this.btLogIn.style.position="absolute";
 		this.btLogIn.style.margin="auto";
 		this.btLogIn.style.left=40+"px";
 		this.btLogIn.style.top=this.height/7+200+"px";
-		this.btLogIn.value="LogIn";
-		this.btLogIn.style.fontSize="36pt";
+		this.btLogIn.style.backgroundImage="url('../images/button/login.png')";
 
 		this.btSignIn.type="button";
-		this.btSignIn.style.width=200+"px";
+		this.btSignIn.style.width=150+"px";
 		this.btSignIn.style.height=70+"px";
 		this.btSignIn.style.position="absolute";
 		this.btSignIn.style.margin="auto";
 		this.btSignIn.style.left=400+"px";
 		this.btSignIn.style.top=this.height/7+200+"px";
-		this.btSignIn.value="SignIn";
-		this.btSignIn.style.fontSize="36pt";
+		this.btSignIn.style.backgroundImage="url('../images/button/signin.png')";
 
 		this.btBack.type="button";
-		this.btBack.style.width=200+"px";
+		this.btBack.style.width=150+"px";
 		this.btBack.style.height=70+"px";
 		this.btBack.style.position="absolute";
 		this.btBack.style.margin="auto";
 		this.btBack.style.left=40+"px";
 		this.btBack.style.top=this.height/7+200+"px";
-		this.btBack.value="Back";
-		this.btBack.style.fontSize="36pt";
+		this.btBack.style.backgroundImage="url('../images/button/back.png')";
 
 		this.btSubmit.type="button";
-		this.btSubmit.style.width=200+"px";
+		this.btSubmit.style.width=150+"px";
 		this.btSubmit.style.height=70+"px";
 		this.btSubmit.style.position="absolute";
 		this.btSubmit.style.margin="auto";
 		this.btSubmit.style.left=400+"px";
 		this.btSubmit.style.top=this.height/7+200+"px";
-		this.btSubmit.value="Submit";
-		this.btSubmit.style.fontSize="36pt";
+		this.btSubmit.style.backgroundImage="url('../images/button/submit.png')";
 
 		this.btExit.type="button";
 		this.btExit.style.width=150+"px";
@@ -185,8 +217,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btExit.style.margin="auto";
 		this.btExit.style.left=this.width-200+"px";
 		this.btExit.style.top=this.height-120+"px";
-		this.btExit.value="Exit";
-		this.btExit.style.fontSize="36pt";
+		this.btExit.style.backgroundImage="url('../images/button/exit.png')";
 
 		this.logInForm.appendChild(this.idBox);
 		this.logInForm.appendChild(this.pwBox);
@@ -237,7 +268,7 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin=0+"px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal1.png')";
+		this.stage.style.backgroundImage="url('../images/bg/notice.png')";
 		this.stage.style.textAlign="center";
 		this.stage.style.display="none";
 
@@ -252,7 +283,7 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.noticeStage.style.fontWeight="bold";
 		this.noticeStage.style.color="silver";
 		this.noticeStage.disabled=true;
-		this.noticeStage.value="안녕";
+		this.noticeStage.value="조작법";
 
 
 		//this.noticeStage.style.textAlign="center";
@@ -457,6 +488,8 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 	this.img_itemP1Arr = new Array(4);
 	this.img_itemP2Arr = new Array(4);
 
+	this.selMapArr = new Array(6);
+
 
 	this.init = function(){
 
@@ -479,6 +512,9 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.div_selTank = document.createElement("div");
 		this.div_down = document.createElement("div");
 		this.div_selMap = document.createElement("div");
+
+		this.btRight = document.createElement("input");
+		this.btLeft = document.createElement("input");
 
 		this.btStart = document.createElement("input");
 		this.btShop = document.createElement("input");
@@ -595,6 +631,41 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.div_selMap.style.border="30px solid red";
 		//this.div_selMap.style.display="inline-block";
 		this.div_selMap.style.float="left";
+
+		for( var a=0 ; a<this.selMapArr.length ; a++ ){
+
+			this.selMapArr[a] = document.createElement("img");
+
+			this.selMapArr[a].style.width=this.width/3+"px";
+			this.selMapArr[a].style.height=this.height/3+"px";
+			this.selMapArr[a].src=mapArr[a].bgSrc;
+			this.selMapArr[a].style.display="none";
+			this.div_selMap.appendChild(this.selMapArr[a]);
+
+		}
+
+		this.btRight.type="button";
+		this.btRight.style.width=30+"px";
+		this.btRight.style.height=50+"px";
+		this.btRight.style.position="absolute";
+		this.btRight.style.margin="auto";
+		this.btRight.style.left=this.width/3+30+"px";
+		this.btRight.style.top=this.height-250+"px";
+		this.btRight.value="Ready";
+		this.btRight.style.fontSize="36pt";
+
+		this.btLeft.type="button";
+		this.btLeft.style.width=30+"px";
+		this.btLeft.style.height=50+"px";
+		this.btLeft.style.position="absolute";
+		this.btLeft.style.margin="auto";
+		this.btLeft.style.left=0+"px";
+		this.btLeft.style.top=this.height-250+"px";
+		this.btLeft.value="Ready";
+		this.btLeft.style.fontSize="36pt";
+
+		this.div_selMap.appendChild(this.btRight);
+		this.div_selMap.appendChild(this.btLeft);
 
 		this.div_selTank.style.width=(this.btSize*this.bt_tankArr.length)+"px";
 		this.div_selTank.style.height=this.btSize+"px";
@@ -960,7 +1031,9 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 	this.stage;
 	this.width=stageW;
 	this.height=stageH;
+	this.btSize=100;
 	this.bt_itemArr = new Array();
+	this.itemCartArr = new Array(4);
 
 	this.audioSrc="../music/shop.mp3";
 	this.audio = new audioCtrl(this.audioSrc);
@@ -973,6 +1046,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.stage = document.createElement("div");
 		this.itemDiv = document.createElement("div");
 		this.itemListDiv = document.createElement("div");
+		this.itemCartDiv = document.createElement("div");
 		this.itemInfoDiv = document.createElement("div");
 		this.itemInfo = document.createElement("textarea");
 
@@ -987,20 +1061,13 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.display="none";
 
 		this.itemDiv.style.width=this.width*7/8+"px";
-		this.itemDiv.style.height=this.height*3/4+"px";
+		this.itemDiv.style.height=this.height*2/3+"px";
 		this.itemDiv.style.margin="auto";
 		this.itemDiv.style.marginTop=80+"px";
 
 		this.itemListDiv.style.width=this.width*5/8+"px";
-		this.itemListDiv.style.height=this.height*2/3+"px";
-		this.itemListDiv.style.marginTop=30+"px";
+		this.itemListDiv.style.height=this.height*3/5+"px";
 		this.itemListDiv.style.float="left";
-
-		this.itemInfoDiv.style.width=this.width*2/8+"px";
-		this.itemInfoDiv.style.height=this.height*2/3+"px";
-		this.itemInfoDiv.style.margin="auto";
-		this.itemInfoDiv.style.marginTop=30+"px";
-		this.itemInfoDiv.style.float="left";
 
 		for( var a=0 ; a<4 ; a++ ){
 
@@ -1011,11 +1078,11 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 					this.bt_itemArr[a] = document.createElement("input");
 
 					this.bt_itemArr[a].type="button";
-					this.bt_itemArr[a].style.width=100+"px";
-					this.bt_itemArr[a].style.height=100+"px";
+					this.bt_itemArr[a].style.width=this.btSize+"px";
+					this.bt_itemArr[a].style.height=this.btSize+"px";
 					this.bt_itemArr[a].style.position="absolute";
 					this.bt_itemArr[a].style.left=180+(120*b)+"px";
-					this.bt_itemArr[a].style.top=180+(130*a)+"px";
+					this.bt_itemArr[a].style.top=120+(130*a)+"px";
 					this.bt_itemArr[a].style.backgroundImage="url("+itemArr[a].itemImg+")";
 
 					this.itemListDiv.appendChild(this.bt_itemArr[a]);
@@ -1024,11 +1091,11 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 
 					this.itemImg = document.createElement("img");
 
-					this.itemImg.style.width=100+"px";
-					this.itemImg.style.height=100+"px";
+					this.itemImg.style.width=this.btSize+"px";
+					this.itemImg.style.height=this.btSize+"px";
 					this.itemImg.style.position="absolute";
 					this.itemImg.style.left=180+(120*b)+"px";
-					this.itemImg.style.top=180+(130*a)+"px";
+					this.itemImg.style.top=120+(130*a)+"px";
 					this.itemImg.src="../images/block/block.png";
 
 					this.itemListDiv.appendChild(this.itemImg);
@@ -1039,6 +1106,32 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 
 		}
 
+		//this.itemCartDiv.style.width=this.width*5/8+"px";
+		//this.itemCartDiv.style.height=this.height*3/5+"px";
+		//this.itemCartDiv.style.float="left";
+		//this.itemCartDiv.style.border="1px solid red";
+
+		for( var a=0 ; a<this.itemCartArr.length ; a++ ){
+
+			this.itemCartArr[a] = document.createElement("img");
+
+			this.itemCartArr[a].style.width=this.imgSize+"px";
+			this.itemCartArr[a].style.height=this.imgSize+"px";
+			this.itemCartArr[a].style.position="absolute";
+			this.itemCartArr[a].style.left=180+(110*a)+"px";
+			this.itemCartArr[a].style.top=650+"px";
+			this.itemCartArr[a].src="";
+			this.itemCartArr[a].style.border="1px solid red";
+
+			this.itemDiv.appendChild(this.itemCartArr[a]);
+
+		}
+
+		this.itemInfoDiv.style.width=this.width*2/8+"px";
+		this.itemInfoDiv.style.height=this.height*3/5+"px";
+		this.itemInfoDiv.style.margin="auto";
+		this.itemInfoDiv.style.marginTop=30+"px";
+		this.itemInfoDiv.style.float="left";
 
 		this.itemInfo.style.width=this.width/5+"px";
 		this.itemInfo.style.height=this.height/2+"px";
@@ -1075,6 +1168,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.btBack.style.fontSize="36pt";
 
 		this.itemInfoDiv.appendChild(this.itemInfo);
+		this.itemListDiv.appendChild(this.itemCartDiv);
 
 		this.itemDiv.appendChild(this.itemListDiv);
 		this.itemDiv.appendChild(this.itemInfoDiv);
@@ -1101,6 +1195,7 @@ var winLoadGame = function( mask, gameWin, stageW, stageH ){
 	this.height=stageH;
 	this.audioSrc="../music/loading.mp3";
 	this.audio = new audioCtrl(this.audioSrc);
+	this.setCount=1;
 	
 
 	this.init = function(){

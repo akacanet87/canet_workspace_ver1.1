@@ -47,6 +47,8 @@ var randomTank = function(){
 var cannonTank = function(){
 
 	this.img;
+	this.tankWidth=50;
+	this.tankHeight=40;
 	this.mainImg='../images/tank/cannontankMain.png';
 	this.tankImg="../images/tank/cannontank.png";
 	this.tankDeathImg="../images/tank/deathcannontank.png";
@@ -67,6 +69,8 @@ var cannonTank = function(){
 var dukeTank = function(){
 
 	this.img;
+	this.tankWidth=60;
+	this.tankHeight=36;
 	this.mainImg='../images/tank/duketankMain.png';
 	this.tankImg="../images/tank/duketank.png";
 	this.tankDeathImg="../images/tank/deathduketank.png";
@@ -87,6 +91,8 @@ var dukeTank = function(){
 var octopusTank = function(){
 
 	this.img;
+	this.tankWidth=50;
+	this.tankHeight=50;
 	this.mainImg='../images/tank/octopustankMain.png';
 	this.tankImg="../images/tank/octopustank.png";
 	this.tankDeathImg="../images/tank/deathoctopustank.png";
@@ -106,6 +112,8 @@ var octopusTank = function(){
 var missileTank = function(){
 
 	this.img;
+	this.tankWidth=50;
+	this.tankHeight=50;
 	this.mainImg='../images/tank/missiletankMain.png';
 	this.tankImg="../images/tank/missiletank.png";
 	this.tankDeathImg="../images/tank/deathmissiletank.png";
@@ -126,6 +134,8 @@ var missileTank = function(){
 var starTank = function(){
 
 	this.img;
+	this.tankWidth=50;
+	this.tankHeight=50;
 	this.mainImg='../images/tank/startankMain.png';
 	this.tankImg="../images/tank/startank.png";
 	this.tankDeathImg="../images/tank/deathstartank.png";

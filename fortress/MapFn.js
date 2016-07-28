@@ -34,7 +34,6 @@ var mapFn = function(mask, map, blockArr ,bgSrc, bgmSrc, blockImg, windImg, bloc
 	this.bgSrc=bgSrc;
 	this.windImg=windImg;
 	var me = this;
-	this.moveMap;
 	this.audio = new audioCtrl(this.bgmSrc);
 
 	this.windDirec;
@@ -98,6 +97,7 @@ var stBlock = function( map, width, height, x, y, blockImg ){
 
 		this.img.style.width=this.width+"px";
 		this.img.style.height=this.height+"px";
+		this.img.style.zIndex=0;
 
 		this.img.style.position="absolute";
 		this.img.style.left=this.x+"px";

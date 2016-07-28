@@ -79,7 +79,7 @@ var theForestMap = function(){
 var theNightMap = function(){
 
 	this.bgmSrc="../music/LifeIsSoBeautiful.mp3";
-	this.bgSrc="../images/map/mapNight.jpg";
+	this.bgSrc="../images/map/mapNight.png";
 	this.blockImg="../images/block/block.png";
 	this.windImg="../images/wind/flower.png";
 	this.blockSize=25;

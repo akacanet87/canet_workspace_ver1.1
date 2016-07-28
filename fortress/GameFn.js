@@ -318,6 +318,8 @@ var fireAngle = function( bullet, cal ){
 
 	this.cal=cal;
 
+	this.deg;
+
 	this.angleY+=cal;
 
 	this.angleX=parseFloat(Math.sqrt(this.rad*this.rad-this.angleY*this.angleY));
@@ -349,7 +351,7 @@ var fireAngle = function( bullet, cal ){
 
 	}
 
-	console.log( this.angleX+" , "+this.angleY);
+	//console.log( this.angleX+" , "+this.angleY);
 
 
 	bullet.angleY=this.angleY;
@@ -357,6 +359,10 @@ var fireAngle = function( bullet, cal ){
 	bullet.angleX=this.angleX;
 
 	//console.log(bullet.angleX+" , "+bullet.angleY);
+
+	this.deg = Math.atan2( this.angleY, this.angleX )*180/ Math.PI;
+
+	console.log(this.deg);
 
 }
 
@@ -371,5 +377,90 @@ var calDamage = function( hp, defense, damage ){
 	this.restHp;
 
 	this.restHp=this.hp-(this.damage-this.defense);
+
+}
+
+
+
+var focusTank = function( map, objX, objY, focusFlag ){
+
+	this.map=map;
+	this.objX=objX;
+	this.objY=objY;
+	this.dRate=0.9;
+	this.focusFlag=focusFlag;
+
+	this.targetX;
+	this.targetY;
+
+	this.mapX=parseInt( this.map.style.left );
+	this.mapY=parseInt( this.map.style.top );
+
+	this.stCount=0;
+	this.st;
+	var me = this;
+
+	this.move = function(){
+
+		this.focusFlag=true;
+
+		//console.log(this.objX+" , "+this.objY);
+
+		this.targetX = -( this.objX - 600 );
+		this.targetY = -( this.objY - 450 );
+
+		this.mapX=parseInt( this.map.style.left );
+		this.mapY=parseInt( this.map.style.top );
+
+		this.stCount++;
+
+		this.st=setTimeout(function(){
+
+			me.move();
+			
+		
+		}, 50 );
+
+		//	이미지 위치 =  타겟X - a*(타겟X - 나와의 남은 거리));
+
+		this.mapX = this.targetX - this.dRate * ( this.targetX -  this.mapX );
+		this.mapY = this.targetY - this.dRate * ( this.targetY - this.mapY );
+
+		if(  this.mapX < -1760 ){
+
+			this.mapX= -1760;
+
+		}
+		
+		if(  this.mapX > 0 ){
+
+			 this.mapX=0;
+
+		}
+
+		if( this.mapY < -1100 ){
+
+			this.mapY=-1100;
+
+		}
+		
+		if( this.mapY > 0 ){
+
+			this.mapY=0;
+
+		}
+
+		this.map.style.left=this.mapX+"px";
+		this.map.style.top=this.mapY+"px";
+
+	}
+
+	this.clear = function(){
+
+		clearTimeout(this.st);
+
+		this.focusFlag=false;
+
+	}
 
 }

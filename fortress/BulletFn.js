@@ -196,6 +196,15 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 						clearTimeout(gameTankArr[a].st);
 						delete gameTankArr[a];				//	배열에서 제거하고 이자리에는 Undefined 가 남음
 
+						//IsTankGone=true;
+
+						mask.removeChild(this.map);
+			
+						gameMap.audio.clear();
+
+						winGameWinner.audio.init();
+						winGameWinner.stage.style.display="block";		
+						gameWin.style.display = "block";
 						//turn=!turn;
 
 						break;

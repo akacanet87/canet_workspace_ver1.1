@@ -22,6 +22,8 @@
 var itemFixHp = function(){						//	Hp 일정량 증가
 
 	this.itemImg='../images/item/fixHp.png';
+	this.itemGameImg='';
+
 
 }
 
@@ -29,6 +31,7 @@ var itemFixHp = function(){						//	Hp 일정량 증가
 var itemDoubleShot = function(){						//	총알 더블 샷
 
 	this.itemImg='../images/item/doubleShot.png';
+	this.itemGameImg='';
 
 }
 
@@ -36,6 +39,7 @@ var itemDoubleShot = function(){						//	총알 더블 샷
 var itemPowerUp = function(){						//	총알의 화력 증가
 
 	this.itemImg='../images/item/powerUp.png';
+	this.itemGameImg='';
 
 }
 
@@ -43,6 +47,7 @@ var itemPowerUp = function(){						//	총알의 화력 증가
 var itemMoveLock = function(){						//	탱크를 이동시키는 아이템
 
 	this.itemImg='../images/item/moveLock.png';
+	this.itemGameImg='';
 
 }
 

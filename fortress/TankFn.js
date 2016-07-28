@@ -125,6 +125,22 @@ var tankFn = function(map, x, y, wid, hei, velX, velY, gravity, distance, fireAn
 
 			clearTimeout(this.st);
 			this.map.removeChild(this.img);
+
+			mask.removeChild(this.map);
+
+			
+
+	
+			//IsTankGone=true;
+
+			
+			gameMap.audio.clear();
+
+			winGameWinner.audio.init();
+			winGameWinner.stage.style.display="block";		
+			gameWin.style.display = "block";
+
+
 			return;
 
 		}

@@ -1,6 +1,3 @@
-var getDamage = function(){					//	데미지 효과
-
-}
 
 
 var hitImage = function(){						// 총알 맞을 때 나타나는 효과
@@ -8,12 +5,13 @@ var hitImage = function(){						// 총알 맞을 때 나타나는 효과
 }
 
 
-var windType = function( velY ){						//	바람 방향
+var windType = function( map, windImg ){						//	바람 방향
 
-	this.velY=velY
+	this.velY
 	this.wind;
 	this.accum;
 	this.oper;
+	this.windImg=windImg;
 
 	this.init = function(){
 
@@ -53,3 +51,6 @@ var windType = function( velY ){						//	바람 방향
 	this.velY=wind;
 
 }
+
+
+
