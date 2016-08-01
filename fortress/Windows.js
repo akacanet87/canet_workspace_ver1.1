@@ -138,22 +138,22 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.backgroundImage="url('../images/bg/logIn.png')";	
 		this.stage.style.display="none";
 
-		this.logInForm.style.width=this.width/2+"px";
-		this.logInForm.style.height=this.height/2+"px";
+		this.logInForm.style.width=800+"px";
+		this.logInForm.style.height=500+"px";
 		this.logInForm.style.margin="auto";
 		this.logInForm.style.position="absolute";
-		this.logInForm.style.left=this.width/4+"px";
-		this.logInForm.style.top=this.height/4+"px";
-		this.logInForm.style.backgroundImage="url('../images/bg/metal1.png')";
+		this.logInForm.style.left=220+"px";
+		this.logInForm.style.top=200+"px";
+		this.logInForm.style.backgroundImage="url('../images/bg/log.png')";
 		this.logInForm.style.textAlign="center";
 
-		this.signInForm.style.width=this.width/2+"px";
-		this.signInForm.style.height=this.height/2+"px";
+		this.signInForm.style.width=800+"px";
+		this.signInForm.style.height=500+"px";
 		this.signInForm.style.margin="auto";
 		this.signInForm.style.position="absolute";
-		this.signInForm.style.left=this.width/4+"px";
-		this.signInForm.style.top=this.height/4+"px";
-		this.signInForm.style.backgroundImage="url('../images/bg/metal2.png')";
+		this.signInForm.style.left=220+"px";
+		this.signInForm.style.top=200+"px";
+		this.signInForm.style.backgroundImage="url('../images/bg/log.png')";
 		this.signInForm.style.textAlign="center";
 
 		this.idBox.type="text";
@@ -179,7 +179,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btLogIn.style.height=70+"px";
 		this.btLogIn.style.position="absolute";
 		this.btLogIn.style.margin="auto";
-		this.btLogIn.style.left=40+"px";
+		this.btLogIn.style.left=100+"px";
 		this.btLogIn.style.top=this.height/7+200+"px";
 		this.btLogIn.style.backgroundImage="url('../images/button/login.png')";
 
@@ -188,7 +188,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btSignIn.style.height=70+"px";
 		this.btSignIn.style.position="absolute";
 		this.btSignIn.style.margin="auto";
-		this.btSignIn.style.left=400+"px";
+		this.btSignIn.style.left=550+"px";
 		this.btSignIn.style.top=this.height/7+200+"px";
 		this.btSignIn.style.backgroundImage="url('../images/button/signin.png')";
 
@@ -197,7 +197,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btBack.style.height=70+"px";
 		this.btBack.style.position="absolute";
 		this.btBack.style.margin="auto";
-		this.btBack.style.left=40+"px";
+		this.btBack.style.left=100+"px";
 		this.btBack.style.top=this.height/7+200+"px";
 		this.btBack.style.backgroundImage="url('../images/button/back.png')";
 
@@ -206,9 +206,10 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btSubmit.style.height=70+"px";
 		this.btSubmit.style.position="absolute";
 		this.btSubmit.style.margin="auto";
-		this.btSubmit.style.left=400+"px";
+		this.btSubmit.style.left=550+"px";
 		this.btSubmit.style.top=this.height/7+200+"px";
 		this.btSubmit.style.backgroundImage="url('../images/button/submit.png')";
+
 
 		this.btExit.type="button";
 		this.btExit.style.width=150+"px";
@@ -259,7 +260,8 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 	this.init = function(){
 
 		this.stage = document.createElement("div");
-		this.noticeStage = document.createElement("textarea");
+		this.noticeStage = document.createElement("div");
+		this.noticeText = document.createElement("textarea");
 		this.btStart = document.createElement("input");
 		this.btBack = document.createElement("input");
 		this.btExit = document.createElement("input");
@@ -272,20 +274,29 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.textAlign="center";
 		this.stage.style.display="none";
 
-		this.noticeStage.style.width=this.width*4/5+"px";
-		this.noticeStage.style.height=this.height*2/3+"px";
+		this.noticeStage.style.width=900+"px";
+		this.noticeStage.style.height=600+"px";
 		this.noticeStage.style.margin="auto";
 		this.noticeStage.style.position="absolute";
-		this.noticeStage.style.left=this.width/10+"px";
-		this.noticeStage.style.top=this.height/10+"px";
-		this.noticeStage.style.backgroundImage="url('../images/bg/metal2.png')";
+		this.noticeStage.style.left=170+"px";
+		this.noticeStage.style.top=150+"px";
+		this.noticeStage.style.backgroundImage="url('../images/bg/board.png')";
 		this.noticeStage.style.fontSize="30pt";
 		this.noticeStage.style.fontWeight="bold";
 		this.noticeStage.style.color="silver";
-		this.noticeStage.disabled=true;
-		this.noticeStage.value="조작법";
 
-
+		this.noticeText.style.width=800+"px";
+		this.noticeText.style.height=500+"px";
+		this.noticeText.style.margin="auto";
+		this.noticeText.style.position="absolute";
+		this.noticeText.style.left=50+"px";
+		this.noticeText.style.top=50+"px";
+		this.noticeText.style.backgroundImage="url('../images/bg/mainbg.png')";
+		this.noticeText.style.fontSize="30pt";
+		this.noticeText.style.fontWeight="bold";
+		//this.noticeText.style.color="silver";
+		this.noticeText.disabled=true;
+		this.noticeText.value="조작법";
 		//this.noticeStage.style.textAlign="center";
 
 		this.btStart.type="button";
@@ -295,8 +306,7 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.btStart.style.margin="auto";
 		this.btStart.style.left=50+"px";
 		this.btStart.style.top=this.height-120+"px";
-		this.btStart.value="Start";
-		this.btStart.style.fontSize="36pt";
+		this.btStart.style.backgroundImage="url('../images/button/start.png')";
 
 		this.btBack.type="button";
 		this.btBack.style.width=150+"px";
@@ -305,9 +315,8 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.btBack.style.margin="auto";
 		this.btBack.style.left=this.width-370+"px";
 		this.btBack.style.top=this.height-120+"px";
-		this.btBack.value="Back";
-		this.btBack.style.fontSize="36pt";
-
+		this.btBack.style.backgroundImage="url('../images/button/back.png')";
+		
 		this.btExit.type="button";
 		this.btExit.style.width=150+"px";
 		this.btExit.style.height=70+"px";
@@ -315,8 +324,9 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.btExit.style.margin="auto";
 		this.btExit.style.left=this.width-200+"px";
 		this.btExit.style.top=this.height-120+"px";
-		this.btExit.value="Exit";
-		this.btExit.style.fontSize="36pt";
+		this.btExit.style.backgroundImage="url('../images/button/exit.png')";
+
+		this.noticeStage.appendChild(this.noticeText);
 
 		this.stage.appendChild(this.noticeStage);
 		this.stage.appendChild(this.btStart);
@@ -380,7 +390,7 @@ var winSelectMode = function( mask, gameWin, stageW, stageH ){			// stage로부�
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin="0px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";
+		this.stage.style.backgroundImage="url('../images/bg/selectmode.png')";
 		this.stage.style.display="none";
 
 		this.div_mul.style.width=this.width/2+"px";									//	div_mul의 style 정의
@@ -394,24 +404,24 @@ var winSelectMode = function( mask, gameWin, stageW, stageH ){			// stage로부�
 		this.div_sing.style.float="left";
 
 		this.btMul.type="button";
-		this.btMul.style.width=450+"px";									//	멀티플레이 버튼 style 정의
-		this.btMul.style.height=450+"px";
-		this.btMul.value="P1 vs P2";
-		this.btMul.style.top=20+"px";
-		this.btMul.style.fontSize="80pt";
-		this.btMul.style.marginTop=30+"px";
+		this.btMul.style.width=300+"px";									//	멀티플레이 버튼 style 정의
+		this.btMul.style.height=300+"px";
+		this.btMul.style.top=200+"px";
+		this.btMul.style.fontSize="50pt";
+		this.btMul.style.marginTop=300+"px";
+		this.btMul.style.backgroundImage="url('../images/button/modemul.png')";
 
 		this.btSing.type="button";
-		this.btSing.style.width=450+"px";									//	싱글플레이 버튼 style 정의
-		this.btSing.style.height=450+"px";
-		this.btSing.value="vs COM";
-		this.btSing.style.fontSize="80pt";
-		this.btSing.style.marginTop=30+"px";
+		this.btSing.style.width=300+"px";									//	싱글플레이 버튼 style 정의
+		this.btSing.style.height=300+"px";
+		this.btSing.style.fontSize="50pt";
+		this.btSing.style.marginTop=300+"px";
+		this.btSing.style.backgroundImage="url('../images/button/modesing.png')";
 
 		this.div_down.style.width=this.width+"px";									//	div_down의 style 정의
 		this.div_down.style.height=this.height/4+"px";
 		this.div_down.style.margin="auto";
-		this.div_down.innerText="모드를 선택해 주세요";
+		this.div_down.color="blue";
 		this.div_down.style.textAlign="center";
 		this.div_down.style.fontSize="50pt";
 		this.div_down.style.float="left";
@@ -423,8 +433,7 @@ var winSelectMode = function( mask, gameWin, stageW, stageH ){			// stage로부�
 		this.btBack.style.margin="auto";
 		this.btBack.style.left=this.width-370+"px";
 		this.btBack.style.top=this.height-120+"px";
-		this.btBack.value="Back";
-		this.btBack.style.fontSize="36pt";
+		this.btBack.style.backgroundImage="url('../images/button/back.png')";
 
 		this.btExit.type="button";
 		this.btExit.style.width=150+"px";
@@ -433,8 +442,7 @@ var winSelectMode = function( mask, gameWin, stageW, stageH ){			// stage로부�
 		this.btExit.style.margin="auto";
 		this.btExit.style.left=this.width-200+"px";
 		this.btExit.style.top=this.height-120+"px";
-		this.btExit.value="Exit";
-		this.btExit.style.fontSize="36pt";
+		this.btExit.style.backgroundImage="url('../images/button/exit.png')";
 
 		this.div_mul.appendChild(this.btMul);									//	버튼들을 div에 갖다 붙임
 		this.div_sing.appendChild(this.btSing);
@@ -513,8 +521,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.div_down = document.createElement("div");
 		this.div_selMap = document.createElement("div");
 
-		this.btRight = document.createElement("input");
-		this.btLeft = document.createElement("input");
+		this.imgRight = document.createElement("img");
 
 		this.btStart = document.createElement("input");
 		this.btShop = document.createElement("input");
@@ -527,7 +534,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin="0px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";
+		this.stage.style.backgroundImage="url('../images/bg/selbg.png')";
 		this.stage.style.display="none";
 
 
@@ -628,7 +635,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 
 		this.div_selMap.style.width=this.width/3+"px";
 		this.div_selMap.style.height=this.height/3+"px";
-		this.div_selMap.style.border="30px solid red";
+		this.div_selMap.style.margin=30+"px";
 		//this.div_selMap.style.display="inline-block";
 		this.div_selMap.style.float="left";
 
@@ -644,32 +651,19 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 
 		}
 
-		this.btRight.type="button";
-		this.btRight.style.width=30+"px";
-		this.btRight.style.height=50+"px";
-		this.btRight.style.position="absolute";
-		this.btRight.style.margin="auto";
-		this.btRight.style.left=this.width/3+30+"px";
-		this.btRight.style.top=this.height-250+"px";
-		this.btRight.value="Ready";
-		this.btRight.style.fontSize="36pt";
+		this.imgRight.style.width=30+"px";
+		this.imgRight.style.height=30+"px";
+		this.imgRight.style.position="absolute";
+		this.imgRight.style.margin="auto";
+		this.imgRight.style.left=this.width/3+30+"px";
+		this.imgRight.style.top=this.height-240+"px";
+		this.imgRight.src="../images/button/next.png";
 
-		this.btLeft.type="button";
-		this.btLeft.style.width=30+"px";
-		this.btLeft.style.height=50+"px";
-		this.btLeft.style.position="absolute";
-		this.btLeft.style.margin="auto";
-		this.btLeft.style.left=0+"px";
-		this.btLeft.style.top=this.height-250+"px";
-		this.btLeft.value="Ready";
-		this.btLeft.style.fontSize="36pt";
-
-		this.div_selMap.appendChild(this.btRight);
-		this.div_selMap.appendChild(this.btLeft);
+		this.div_selMap.appendChild(this.imgRight);
 
 		this.div_selTank.style.width=(this.btSize*this.bt_tankArr.length)+"px";
 		this.div_selTank.style.height=this.btSize+"px";
-		this.div_selTank.style.border="30px solid red";
+		this.div_selTank.style.margin=30+"px";
 		this.div_selTank.style.display="inline-block";
 
 		for( var a=0 ; a<this.bt_tankArr.length ; a++ ){
@@ -693,8 +687,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.btStart.style.margin="auto";
 		this.btStart.style.left=this.width-710+"px";
 		this.btStart.style.top=this.height-120+"px";
-		this.btStart.value="Ready";
-		this.btStart.style.fontSize="36pt";
+		this.btStart.style.backgroundImage="url('../images/button/ready.png')";
 
 		this.btShop.type="button";
 		this.btShop.style.width=150+"px";
@@ -703,8 +696,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.btShop.style.margin="auto";
 		this.btShop.style.left=this.width-540+"px";
 		this.btShop.style.top=this.height-120+"px";
-		this.btShop.value="Shop";
-		this.btShop.style.fontSize="36pt";
+		this.btShop.style.backgroundImage="url('../images/button/shop.png')";
 
 		this.btBack.type="button";
 		this.btBack.style.width=150+"px";
@@ -713,8 +705,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.btBack.style.margin="auto";
 		this.btBack.style.left=this.width-370+"px";
 		this.btBack.style.top=this.height-120+"px";
-		this.btBack.value="Back";
-		this.btBack.style.fontSize="36pt";
+		this.btBack.style.backgroundImage="url('../images/button/back.png')";
 
 		this.btExit.type="button";
 		this.btExit.style.width=150+"px";
@@ -723,8 +714,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.btExit.style.margin="auto";
 		this.btExit.style.left=this.width-200+"px";
 		this.btExit.style.top=this.height-120+"px";
-		this.btExit.value="Exit";
-		this.btExit.style.fontSize="36pt";
+		this.btExit.style.backgroundImage="url('../images/button/exit.png')";
 
 		this.div_tankP1.appendChild(this.img_tankP1);
 		this.div_tankP1.appendChild(this.div_itemP1);
@@ -1057,7 +1047,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.height=this.height+"px";
 		this.stage.style.position="absolute";
 		this.stage.style.textAlign="center";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";
+		this.stage.style.backgroundImage="url('../images/bg/selbg.png')";
 		this.stage.style.display="none";
 
 		this.itemDiv.style.width=this.width*7/8+"px";
@@ -1133,17 +1123,16 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.itemInfoDiv.style.marginTop=30+"px";
 		this.itemInfoDiv.style.float="left";
 
-		this.itemInfo.style.width=this.width/5+"px";
-		this.itemInfo.style.height=this.height/2+"px";
+		this.itemInfo.style.width=250+"px";
+		this.itemInfo.style.height=450+"px";
 		//this.itemInfo.style.margin="auto";
 		this.itemInfo.style.position="absolute";
 		this.itemInfo.style.left=880+"px";
 		this.itemInfo.style.top=200+"px";
-		this.itemInfo.style.backgroundImage="url('../images/bg/metal1.png')";
+		this.itemInfo.style.backgroundImage="url('../images/bg/board1.png')";
 		this.itemInfo.style.fontSize="30pt";
 		this.itemInfo.style.fontWeight="bold";
 		this.itemInfo.style.color="silver";
-		this.itemInfo.value="안녕";
 
 /*		
 */
@@ -1154,8 +1143,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.btOk.style.margin="auto";
 		this.btOk.style.left=50+"px";
 		this.btOk.style.top=this.height-120+"px";
-		this.btOk.value="OK";
-		this.btOk.style.fontSize="36pt";
+		this.btOk.style.backgroundImage="url('../images/button/ok.png')";
 
 		this.btBack.type="button";
 		this.btBack.style.width=150+"px";
@@ -1164,8 +1152,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.btBack.style.margin="auto";
 		this.btBack.style.left=this.width-200+"px";
 		this.btBack.style.top=this.height-120+"px";
-		this.btBack.value="Back";
-		this.btBack.style.fontSize="36pt";
+		this.btBack.style.backgroundImage="url('../images/button/back.png')";
 
 		this.itemInfoDiv.appendChild(this.itemInfo);
 		this.itemListDiv.appendChild(this.itemCartDiv);
@@ -1206,7 +1193,7 @@ var winLoadGame = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin=0+"px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";
+		this.stage.style.backgroundImage="url('../images/bg/loading.png')";
 		this.stage.style.display="none";
 
 		this.gameWin.appendChild(this.stage);
@@ -1230,17 +1217,43 @@ var winGameWinner = function( mask, gameWin, stageW, stageH ){
 	this.init = function(){
 
 		this.stage = document.createElement("div");
+		this.btBack = document.createElement("input");
+		this.btExit = document.createElement("input");
 
 		this.stage.style.width=this.width+"px";
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin=0+"px";
 		this.stage.style.position="absolute";
-		this.stage.style.backgroundImage="url('../images/bg/metal.png')";
+		this.stage.style.backgroundImage="url('../images/bg/notice.png')";
 		this.stage.style.display="none";
 
 		this.gameWin.appendChild(this.stage);
 		this.mask.appendChild(this.gameWin);
-	
+
+		this.btBack.type="button";
+		this.btBack.style.width=150+"px";
+		this.btBack.style.height=70+"px";
+		this.btBack.style.position="absolute";
+		this.btBack.style.margin="auto";
+		this.btBack.style.left=this.width-370+"px";
+		this.btBack.style.top=this.height-120+"px";
+		this.btBack.style.backgroundImage="url('../images/button/back.png')";
+
+		this.btExit.type="button";
+		this.btExit.style.width=150+"px";
+		this.btExit.style.height=70+"px";
+		this.btExit.style.position="absolute";
+		this.btExit.style.margin="auto";
+		this.btExit.style.left=this.width-200+"px";
+		this.btExit.style.top=this.height-120+"px";
+		this.btExit.style.backgroundImage="url('../images/button/exit.png')";
+
+		this.stage.appendChild(this.btBack);
+		this.stage.appendChild(this.btExit);
+
+		this.gameWin.appendChild(this.stage);
+		this.mask.appendChild(this.gameWin);
+			
 	}
 
 }

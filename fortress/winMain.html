@@ -131,6 +131,20 @@ var gameMap;
 
 var bulletPower= new bulletPower();
 
+var bulletAngle1;
+var bulletAngle2;
+
+var bulletDeg1;
+var bulletAngle1;
+var bulletDeg2;
+var bulletAngle2;
+
+var angleCount1=0;
+var angleCount2=0;
+var angleCount=0;
+
+
+
 
 var focusFlag=false;
 var startFlag=false;
@@ -142,6 +156,8 @@ var count1=false;
 var count2=false;
 var spaceFlag=1;
 var IsTankGone=false;
+var degFlag1=true;
+var degFlag2=true;
 
 
 var bulletP1;
@@ -183,7 +199,7 @@ var shotPw=0;
 var speed=0;
 var cal=0;
 
-var angleCount=0;
+
 
 
 /***********************************************************************
@@ -517,7 +533,7 @@ function init(){
 
 		if( !startFlag ) {
 
-			winSelectContentsMul.btStart.value="Start";
+			winSelectContentsMul.btStart.style.backgroundImage="url('../images/button/start.png')";
 
 			startFlag=!startFlag;
 
@@ -553,7 +569,7 @@ function init(){
 	
 	});
 
-	winSelectContentsMul.btRight.addEventListener("click", function(){
+	winSelectContentsMul.imgRight.addEventListener("click", function(){
 
 		selMapFlag++;
 
@@ -574,10 +590,10 @@ function init(){
 		winSelectContentsMul.selMapArr[prevMap].style.display="none";
 
 		winSelectContentsMul.selMapArr[selMapFlag].style.display="block";
-
-		nextMap
 			
 	});
+
+/*
 
 	winSelectContentsMul.btLeft.addEventListener("click", function(){
 
@@ -603,6 +619,9 @@ function init(){
 	
 	});
 
+
+*/
+
 	winSelectContentsMul.btBack.addEventListener("click", function(){
 
 		winSelectContentsMul.audio.clear();
@@ -611,7 +630,7 @@ function init(){
 		winSelectContentsMul.img_tankP1.src="../images/effect/box.png";
 		winSelectContentsMul.img_tankP2.src="../images/effect/box.png";
 
-		winSelectContentsMul.btStart.value="Ready";
+		winSelectContentsMul.btStart.style.backgroundImage="url('../images/button/ready.png')";
 		
 		startFlag=false;
 
@@ -659,13 +678,13 @@ function init(){
 
 			getTankArr[0]= tankArr[parseInt(Math.random()*5+1)];
 
-			winSelectContentsMul.img_tankP1.src	= tankArr[0].mainImg;
+			winSelectContentsMul.img_tankP1.src=tankArr[0].mainImg;
 
 		}else if( startFlag ){
 
 			getTankArr[1]= tankArr[parseInt(Math.random()*5+1)];
 
-			winSelectContentsMul.img_tankP2.src	= tankArr[1].mainImg;
+			winSelectContentsMul.img_tankP2.src=tankArr[0].mainImg;
 
 		}
 			
@@ -677,13 +696,13 @@ function init(){
 
 			getTankArr[0]= tankArr[1];
 
-			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+			winSelectContentsMul.img_tankP1.src=getTankArr[0].mainImg;
 
 		}else if( startFlag ){
 
 			getTankArr[1]= tankArr[1];
 
-			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+			winSelectContentsMul.img_tankP2.src=getTankArr[1].mainImg;
 
 		}
 	
@@ -695,13 +714,13 @@ function init(){
 
 			getTankArr[0]= tankArr[2];
 
-			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+			winSelectContentsMul.img_tankP1.src=getTankArr[0].mainImg;
 
 		}else if( startFlag ){
 
 			getTankArr[1]= tankArr[2];
 
-			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+			winSelectContentsMul.img_tankP2.src=getTankArr[1].mainImg;
 
 		}
 	
@@ -713,13 +732,13 @@ function init(){
 
 			getTankArr[0]= tankArr[3];
 
-			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+			winSelectContentsMul.img_tankP1.src=getTankArr[0].mainImg;
 
 		}else if( startFlag ){
 
 			getTankArr[1]= tankArr[3];
 
-			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+			winSelectContentsMul.img_tankP2.src=getTankArr[1].mainImg;
 
 		}
 	
@@ -731,13 +750,13 @@ function init(){
 
 			getTankArr[0]= tankArr[4];
 
-			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+			winSelectContentsMul.img_tankP1.src=getTankArr[0].mainImg;
 
 		}else if( startFlag ){
 
 			getTankArr[1]= tankArr[4];
 
-			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+			winSelectContentsMul.img_tankP2.src=getTankArr[1].mainImg;
 
 		}
 	
@@ -749,13 +768,13 @@ function init(){
 
 			getTankArr[0]= tankArr[5];
 
-			winSelectContentsMul.img_tankP1.src	= getTankArr[0].mainImg;
+			winSelectContentsMul.img_tankP1.src=getTankArr[0].mainImg;
 
 		}else if( startFlag ){
 
 			getTankArr[1]= tankArr[5];
 
-			winSelectContentsMul.img_tankP2.src	= getTankArr[1].mainImg;
+			winSelectContentsMul.img_tankP2.src=getTankArr[1].mainImg;
 
 		}
 	
@@ -905,6 +924,32 @@ function init(){
 			
 	});
 
+/***********************************************************************
+				winLoadGame 창
+************************************************************************/
+
+	winGameWinner.btBack.addEventListener("click", function(){
+
+		winGameWinner.audio.clear();
+		winGameWinner.stage.style.display="none";
+
+		winSelectMode.audio.init();
+		winSelectMode.stage.style.display="block";
+
+	});
+
+	winGameWinner.btExit.addEventListener("click", function(){
+
+		var con = confirm("정말 종료할거임?");
+
+		if( con ){
+
+			close();
+
+		}
+	
+	});
+
 	
 
 
@@ -931,16 +976,20 @@ function init(){
 		mask.appendChild(map);
 		map.style.display="block";	
 
-		gameTankArr[0] = new tankFn(map, birthX1, birthY1, getTankArr[0].tankWidth, getTankArr[0].tankHeight, velX, velY, gravity, getTankArr[0].distance, getTankArr[0].fireAngle, getTankArr[0].defense, getTankArr[0].hp, getTankArr[0].damage, getTankArr[0].tankImg, getTankArr[0].deathImg, getTankArr[0].bulletImg, getTankArr[0].bulletWid, getTankArr[0].bulletHei);
+		gameTankArr[0] = new tankFn(map, birthX1, birthY1, getTankArr[0].tankWidth, getTankArr[0].tankHeight, velX, velY, gravity, getTankArr[0].distance, getTankArr[0].fireAngle, getTankArr[0].defense, getTankArr[0].hp, getTankArr[0].damage, getTankArr[0].tankImg, getTankArr[0].deathImg, getTankArr[0].bulletImg, getTankArr[0].bulletWid, getTankArr[0].bulletHei );
 
-		gameTankArr[1] = new tankFn(map, birthX2, birthY2, getTankArr[1].tankWidth, getTankArr[1].tankHeight, velX, velY, gravity, getTankArr[1].distance, getTankArr[1].fireAngle, getTankArr[1].defense, getTankArr[1].hp, getTankArr[1].damage, getTankArr[1].tankImg, getTankArr[1].deathImg, getTankArr[1].bulletImg, getTankArr[1].bulletWid, getTankArr[1].bulletHei);
+		gameTankArr[1] = new tankFn(map, birthX2, birthY2, getTankArr[1].tankWidth, getTankArr[1].tankHeight, velX, velY, gravity, getTankArr[1].distance, getTankArr[1].fireAngle, getTankArr[1].defense, getTankArr[1].hp, getTankArr[1].damage, getTankArr[1].tankImg, getTankArr[1].deathImg, getTankArr[1].bulletImg, getTankArr[1].bulletWid, getTankArr[1].bulletHei );
 		
 		gameTankArr[0].init();
 
 		gameTankArr[1].init();
 
-		console.log( gameTankArr[0].x +" , " + gameTankArr[0].y );
+		//bulletDeg1 = new bulletDeg( map, degFlag1, gameTankArr[0].x, gameTankArr[0].y, gameTankArr[0].width, gameTankArr[0].height, angleCount1, velX );
 
+		//bulletDeg2 = new bulletDeg( map, degFlag2, gameTankArr[1].x, gameTankArr[1].y, gameTankArr[1].width, gameTankArr[1].height, angleCount2, velX );
+
+		console.log( "1P 탱크 위치 : "+gameTankArr[0].x +" , " + gameTankArr[0].y );
+		console.log( "2P 탱크 위치 : "+gameTankArr[1].x +" , " + gameTankArr[1].y );
 
 	});
 
@@ -1032,9 +1081,9 @@ window.addEventListener("keydown", function(){
 
 				angleCount++;
 
-				console.log( angleCount );
+				//console.log( angleCount );
 
-				console.log(bulletP1.angleX+" , "+bulletP1.angleY);
+				console.log( parseInt(bulletP1.angleY*100));
 
 				break;
 			
@@ -1042,7 +1091,7 @@ window.addEventListener("keydown", function(){
 
 				fireAngle( bulletP1, -0.01 );
 
-				console.log(bulletP1.angleX+" , "+bulletP1.angleY);
+				console.log( parseInt(bulletP1.angleY*100));
 
 				break;
 
@@ -1119,7 +1168,7 @@ window.addEventListener("keydown", function(){
 
 				fireAngle( bulletP2, 0.01 );
 
-				console.log(bulletP2.angleX+" , "+bulletP2.angleY);
+				console.log( parseInt(bulletP2.angleY*100));
 
 				break;
 			
@@ -1127,7 +1176,7 @@ window.addEventListener("keydown", function(){
 
 				fireAngle( bulletP2, -0.01 );
 
-				console.log(bulletP2.angleX+" , "+bulletP2.angleY);
+				console.log( parseInt(bulletP2.angleY*100));
 
 				break;
 

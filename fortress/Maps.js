@@ -25,7 +25,7 @@ var theCastleMap = function(){
 	this.blockSize=25;
 	this.blockAreaX=[0, 200, 800, 1200, 1700];
 	this.blockAreaY=[1500, 1800, 1200, 900, 1500];
-	this.blockLen=[70, 100, 90, 80, 120];
+	this.blockLen=[80, 80, 80, 80, 80];
 	this.mapFlag=1;
 
 }
@@ -38,9 +38,9 @@ var overTheCloudMap = function(){
 	this.blockImg="../images/block/block.png";
 	this.windImg="../images/wind/star.png";
 	this.blockSize=25;
-	this.blockAreaX=[0, 200, 800, 1200, 1700];
-	this.blockAreaY=[1500, 1800, 1200, 900, 1500];
-	this.blockLen=[70, 100, 90, 80, 120];
+	this.blockAreaX=[0, 600, 1200, 1800, 2400];
+	this.blockAreaY=[900, 1200, 1500, 900, 1800];
+	this.blockLen=[80, 80, 80, 80, 80];
 	this.mapFlag=2;
 
 }
@@ -53,9 +53,9 @@ var theRuinedCityMap = function(){
 	this.blockImg="../images/block/block.png";
 	this.windImg="../images/wind/dust.png";
 	this.blockSize=25;
-	this.blockAreaX=[0, 200, 800, 1200, 1700];
-	this.blockAreaY=[1500, 1800, 1200, 900, 1500];
-	this.blockLen=[70, 100, 90, 80, 120];
+	this.blockAreaX=[0, 600, 1200, 1800, 2400];
+	this.blockAreaY=[1200, 1600, 1200, 1600, 1200];
+	this.blockLen=[80, 80, 80, 80, 80];
 	this.mapFlag=3;
 
 }
@@ -68,9 +68,9 @@ var theForestMap = function(){
 	this.blockImg="../images/block/block.png";
 	this.windImg="../images/wind/clober.png";
 	this.blockSize=25;
-	this.blockAreaX=[0, 200, 800, 1200, 1700];
+	this.blockAreaX=[0, 600, 1200, 1800, 2400];
 	this.blockAreaY=[1500, 1800, 1200, 900, 1500];
-	this.blockLen=[70, 100, 90, 80, 120];
+	this.blockLen=[80, 80, 80, 80, 80];
 	this.mapFlag=4;
 
 }
@@ -83,9 +83,9 @@ var theNightMap = function(){
 	this.blockImg="../images/block/block.png";
 	this.windImg="../images/wind/flower.png";
 	this.blockSize=25;
-	this.blockAreaX=[0, 200, 800, 1200, 1700];
-	this.blockAreaY=[1500, 1800, 1200, 900, 1500];
-	this.blockLen=[70, 100, 90, 80, 120];
+	this.blockAreaX=[0, 600, 1200, 1800, 2400];
+	this.blockAreaY=[1200, 2000, 1200, 1600, 1200];
+	this.blockLen=[80, 80, 80, 80, 80];
 	this.mapFlag=5;
 
 }
@@ -98,7 +98,7 @@ var theDesertMap = function(){
 	this.blockImg="../images/block/block.png";
 	this.windImg="../images/wind/ash.png";
 	this.blockSize=25;
-	this.blockAreaX=[0, 200, 800, 1200, 1700];
+	this.blockAreaX=[0, 600, 1200, 1800, 2400];
 	this.blockAreaY=[1500, 1800, 1200, 900, 1500];
 	this.blockLen=[70, 100, 90, 80, 120];
 	this.mapFlag=6;

@@ -89,7 +89,7 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 		this.angleY+=this.gravity;
 
-		console.log(this.x+" , "+this.y);
+		//console.log(this.x+" , "+this.y);
 
 		this.img.style.left=this.x+"px";
 		this.img.style.top=this.y+"px";
@@ -103,38 +103,9 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 			
 		}, 10);		// setTimeout이 clearTimeout보다 먼저 호출되어야 한다.
 		
-/*
 
-		//	블록과 부딪히면
-		for( var a=0 ; a<blockArr.length ; a++ ){
 
-			if(blockArr[a]!=undefined){							//	배열에 존재하는 img에 대해서만 (undefined가 아닌 경우만)
-				
-				var result = hitTest(this.img, blockArr[a].img);
 
-				if( result ){
-
-					//	총알 죽이고 총알의 setTimeout도 중지
-					this.map.removeChild(this.img);
-					clearTimeout(this.st);
-
-					//	적군 죽이고
-					this.map.removeChild(blockArr[a].img);			//	이미지를 먼저 없애고 delete를 맨마지막에 쓴다.
-					clearTimeout(blockArr[a].st);
-					delete blockArr[a];				//	배열에서 제거하고 이자리에는 Undefined 가 남음
-
-					turn=!turn;
-
-					break;
-					return;
-
-				}
-
-			}
-
-		}
-
-*/
 
 		for(var i=0;i<blockArr.length;i++){					//	히트테스트
 
@@ -167,7 +138,10 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 		}
 
-		console.log( turn );
+		//console.log( turn );
+
+
+
 
 
 		for( var a=0 ; a<gameTankArr.length ; a++ ){
@@ -186,9 +160,10 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 					gameTankArr[a].hp=this.calDam.restHp;
 
-					console.log( gameTankArr[a].hp );
-					console.log( gameTankArr[a].defense);
-					console.log( this.damage );
+					console.log( "이 총알의 damage : " + this.damage );
+					console.log( "이 탱크의 defence : " + gameTankArr[a].defense);
+								
+					
 
 					if( gameTankArr[a].hp <= 0 ){
 					
@@ -214,7 +189,7 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 						gameTankArr[a].hp;
 
-						console.log( gameTankArr[a].hp );
+						console.log( (a+1)+"P의 현재 hp : "+gameTankArr[a].hp );
 
 						turn=!turn;
 
@@ -233,7 +208,10 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 		}
 
+
 			
+
+
 		// 부딪히지 않고 화면 밖으로 나가면
 		if( ( parseInt( this.img.style.left ) > parseInt( this.map.style.width )+200 ) || ( parseInt( this.img.style.left ) < -200 ) || ( parseInt( this.img.style.top ) > parseInt( this.map.style.height ) ) ){
 
@@ -249,7 +227,15 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 		}
 
-		console.log( turn );
+		if(turn){
+
+			console.log( "1p차례!!" );
+
+		}else if( !turn ){
+
+			console.log( "2p차례" );
+
+		}
 
 	}
 
