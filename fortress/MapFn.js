@@ -34,6 +34,7 @@ var mapFn = function(mask, map, blockArr ,bgSrc, bgmSrc, blockImg, windImg, bloc
 	this.bgSrc=bgSrc;
 	this.windImg=windImg;
 	var me = this;
+	this.mask=mask;
 	this.audio = new audioCtrl(this.bgmSrc);
 
 	this.windDirec;
@@ -41,6 +42,8 @@ var mapFn = function(mask, map, blockArr ,bgSrc, bgmSrc, blockImg, windImg, bloc
 	this.init = function(){
 
 		this.map.style.backgroundImage="url('"+this.bgSrc+"')";
+
+		//this.mask.appendChild(this.map);
 
 		for( var a=0 ; a<blockArr.length ; a++ ){
 
@@ -72,11 +75,34 @@ var mapFn = function(mask, map, blockArr ,bgSrc, bgmSrc, blockImg, windImg, bloc
 			}
 
 		}
-
 	
 	}
 
+	this.clearMap = function(){
+
+		for( var a=0 ; a<blockArr.length ; a++ ){
+
+			for( var b=0 ; b<this.blockLen[a] ; b++ ){
+
+				if(blockArr[a][b]!=undefined){
+
+					this.map.removeChild(this.blockArr[a][b].img);
+
+					clearTimeout(blockArr[a][b].st);
+					delete blockArr[a][b];	
+
+				}
+
+			}
+
+		}
+
+		this.mask.removeChild(this.map);
+
+	}
+
 }
+
 
 
 var stBlock = function( map, width, height, x, y, blockImg ){
@@ -108,96 +134,3 @@ var stBlock = function( map, width, height, x, y, blockImg ){
 	}
 
 }
-
-
-/*
-
-var moveMap = function(){
-
-	this.PosX;
-	this.PosY;
-
-	window.addEventListener("mousemove", function(){
-
-		entX=event.clientX;
-		entY=event.clientY;
-
-		//console.log(entX+" , "+entY);
-
-		if( (this.entX > 1230) && mapPosX>-1760 ){
-
-			mapLeft=-20;
-			mapTop=0;
-
-			mapPosX+=mapLeft;
-			mapPosY+=mapTop;
-
-			map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
-
-		}
-		
-		if( (entX < 10) && mapPosX<0 ){
-
-			mapLeft=20;
-			mapTop=0;
-
-			mapPosX+=mapLeft;
-			mapPosY+=mapTop;
-
-			map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
-
-		}
-
-		if( (entY > 890) && mapPosY>-1100 ){
-
-			mapLeft=0;
-			mapTop=-10;
-
-			mapPosX+=mapLeft;
-			mapPosY+=mapTop;
-
-			map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
-
-		}
-		
-		if( (entY < 10) && mapPosY<0 ){
-
-			mapLeft=0;
-			mapTop=10;
-
-			mapPosX+=mapLeft;
-			mapPosY+=mapTop;
-
-			map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
-
-
-		}
-
-		if( ( (entX < 1230) && mapPosX<-1760) && ( (entX > 10) && mapPosX>0 ) &&  ( (entY < 890) && mapPosY<-1100 ) && ( (entY > 10) && mapPosY>0 ) ){
-
-			mapLeft=0;
-			mapTop=0;
-
-			mapPosX+=mapLeft;
-			mapPosY+=mapTop;
-
-			map.style.backgroundPosition=mapPosX+"px "+mapPosY+"px";
-
-		}
-
-		PosX=mapPosX;
-		PosY=mapPosY;
-
-		console.log(mapPosX);
-		console.log(PosX);
-
-		
-
-	});
-
-	//setTimeout("moveMap()", 100);
-
-}
-
-
-*/

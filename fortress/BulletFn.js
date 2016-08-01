@@ -162,55 +162,18 @@ var bulletFn = function( map, tankX, tankY, gravity, angleX, angleY, side, bulle
 
 					console.log( "이 총알의 damage : " + this.damage );
 					console.log( "이 탱크의 defence : " + gameTankArr[a].defense);
-								
-					
-
-					if( gameTankArr[a].hp <= 0 ){
-					
-						this.map.removeChild(gameTankArr[a].img);			//	이미지를 먼저 없애고 delete를 맨마지막에 쓴다.
-						clearTimeout(gameTankArr[a].st);
-						delete gameTankArr[a];				//	배열에서 제거하고 이자리에는 Undefined 가 남음
-
-						//IsTankGone=true;
-
-						mask.removeChild(this.map);
-			
-						gameMap.audio.clear();
-
-						winGameWinner.audio.init();
-						winGameWinner.stage.style.display="block";		
-						gameWin.style.display = "block";
-						//turn=!turn;
-
-						break;
-						return;
-
-					}else{
-
-						gameTankArr[a].hp;
-
-						console.log( (a+1)+"P의 현재 hp : "+gameTankArr[a].hp );
-
-						turn=!turn;
-
-						break;
-						return;
-
-					}
-
+					console.log( (a+1)+"P의 현재 hp : "+gameTankArr[a].hp );
 
 					turn=!turn;
 
+					break;
+					return;
 	
 				}
 
 			}
 
 		}
-
-
-			
-
 
 		// 부딪히지 않고 화면 밖으로 나가면
 		if( ( parseInt( this.img.style.left ) > parseInt( this.map.style.width )+200 ) || ( parseInt( this.img.style.left ) < -200 ) || ( parseInt( this.img.style.top ) > parseInt( this.map.style.height ) ) ){

@@ -19,7 +19,6 @@
 </style>
 
 <script src="./Windows.js"></script>
-<script src="./SelectBox.js"></script>
 <script src="./TankFn.js"></script>
 <script src="./BulletFn.js"></script>
 <script src="./GameFn.js"></script>
@@ -27,7 +26,6 @@
 <script src="./Tanks.js"></script>
 <script src="./Maps.js"></script>
 <script src="./Items.js"></script>
-<script src="./SignIn.js"></script>
 <script src="./Gauge.js"></script>
 
 <script>
@@ -48,6 +46,8 @@ var s_hei=900;
 				블록 배열 설정
 ************************************************************************/
 
+/*
+
 var blockArr1 = new Array();
 var blockArr2 = new Array();
 var blockArr3 = new Array();
@@ -55,6 +55,17 @@ var blockArr4 = new Array();
 var blockArr5 = new Array();
 
 var blockArr = new Array( blockArr1, blockArr2, blockArr3, blockArr4, blockArr5 );
+
+*/
+
+
+var blockArr1;
+var blockArr2;
+var blockArr3;
+var blockArr4;
+var blockArr5;
+
+var blockArr;
 
 
 /***********************************************************************
@@ -925,13 +936,62 @@ function init(){
 	});
 
 /***********************************************************************
-				winLoadGame 창
+				winGameWinner 창
 ************************************************************************/
 
 	winGameWinner.btBack.addEventListener("click", function(){
 
 		winGameWinner.audio.clear();
 		winGameWinner.stage.style.display="none";
+
+		for( var a=0 ; a<itemArr.length ;  a++ ){
+
+			if( !startFlag ) {
+
+				getItemArrP1[a]="";
+
+				winSelectContentsMul.img_itemP1Arr[a].src="../images/effect/box.png";
+
+				winItemShop.itemCartArr[a].src="";
+
+			}else if( startFlag ){
+
+				getItemArrP2[a]="";
+
+				winSelectContentsMul.img_itemP2Arr[a].src="../images/effect/box.png";
+
+				winItemShop.itemCartArr[a].src="";
+
+			}
+
+		}
+
+		winSelectContentsMul.img_tankP1.src="../images/effect/box.png";
+		winSelectContentsMul.img_tankP2.src="../images/effect/box.png";
+
+		winSelectContentsMul.btStart.style.backgroundImage="url('../images/button/ready.png')";
+		
+		startFlag=false;
+
+		selMapFlag=0;
+
+		for( var a=0 ; a<itemArr.length ;  a++ ){
+
+			getItemArrP1[a]="";
+
+			winSelectContentsMul.img_itemP1Arr[a].src="../images/effect/box.png";
+
+			winItemShop.itemCartArr[a].src="";
+
+			getItemArrP2[a]="";
+
+			winSelectContentsMul.img_itemP2Arr[a].src="../images/effect/box.png";
+
+			winItemShop.itemCartArr[a].src="";
+
+			cartFlag[a]=true;
+
+		}
 
 		winSelectMode.audio.init();
 		winSelectMode.stage.style.display="block";
@@ -962,6 +1022,14 @@ function init(){
 
 		winLoadGame.audio.clear();
 		winLoadGame.stage.style.display="none";	
+
+		blockArr1 = new Array();
+		blockArr2 = new Array();
+		blockArr3 = new Array();
+		blockArr4 = new Array();
+		blockArr5 = new Array();
+
+		blockArr = new Array( blockArr1, blockArr2, blockArr3, blockArr4, blockArr5 );
 
 
 		getMap = mapArr[selMapFlag];
@@ -1012,9 +1080,9 @@ window.addEventListener("keydown", function(){
 
 		bulletPower.init();
 
-		//focusTankP1 = new focusTank( map, gameTankArr[0].x, gameTankArr[0].y );
+		//focusOnP1 = new focusOn( map, gameTankArr[0].x, gameTankArr[0].y );
 
-		//focusTankP1.move();
+		//focusOnP1.move();
 
 		if(count1){
 
@@ -1022,7 +1090,7 @@ window.addEventListener("keydown", function(){
 			
 			case 32:
 
-				//focusTankP1.clear();
+				//focusOnP1.clear();
 
 				tankMove(gameTankArr[0], 0);
 

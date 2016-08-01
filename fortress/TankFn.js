@@ -76,7 +76,7 @@ var tankFn = function(map, x, y, wid, hei, velX, velY, gravity, distance, fireAn
 		this.img.style.top=this.y+"px";
 
 
-		if(tankFn.velY>0){
+		if(this.velY>0){
 			
 			this.falling=true;
 
@@ -123,25 +123,53 @@ var tankFn = function(map, x, y, wid, hei, velX, velY, gravity, distance, fireAn
 
 			//alert("저 자살할게요");
 
-			clearTimeout(this.st);
-			this.map.removeChild(this.img);
+			for( var a=0 ; a<gameTankArr.length ; a++ ){
 
-			mask.removeChild(this.map);
+				this.map.removeChild(gameTankArr[a].img);			//	이미지를 먼저 없애고 delete를 맨마지막에 쓴다.
+				clearTimeout(gameTankArr[a].st);
+				delete gameTankArr[a];
 
-			
+			}
 
-	
-			//IsTankGone=true;
+			gameMap.clearMap();
 
-			
+			//mask.removeChild(this.map);
+			//this.map.style.display="none";	
+
 			gameMap.audio.clear();
 
 			winGameWinner.audio.init();
 			winGameWinner.stage.style.display="block";		
 			gameWin.style.display = "block";
 
-
 			return;
+
+		}else{
+	
+			if( this.hp <= 0 ){
+					
+			//IsTankGone=true;
+
+				for( var a=0 ; a<gameTankArr.length ; a++ ){
+
+				this.map.removeChild(gameTankArr[a].img);			//	이미지를 먼저 없애고 delete를 맨마지막에 쓴다.
+				clearTimeout(gameTankArr[a].st);
+				delete gameTankArr[a];
+
+				}
+
+				//mask.removeChild(this.map);
+				//this.map.style.display="none";	
+
+				gameMap.clearMap();
+
+				gameMap.audio.clear();
+
+				winGameWinner.audio.init();
+				winGameWinner.stage.style.display="block";		
+				gameWin.style.display = "block";
+
+			}
 
 		}
 
