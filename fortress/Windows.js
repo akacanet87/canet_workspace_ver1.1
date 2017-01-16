@@ -143,7 +143,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.logInForm.style.margin="auto";
 		this.logInForm.style.position="absolute";
 		this.logInForm.style.left=220+"px";
-		this.logInForm.style.top=200+"px";
+		this.logInForm.style.top=50+"px";
 		this.logInForm.style.backgroundImage="url('../images/bg/log.png')";
 		this.logInForm.style.textAlign="center";
 
@@ -152,7 +152,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.signInForm.style.margin="auto";
 		this.signInForm.style.position="absolute";
 		this.signInForm.style.left=220+"px";
-		this.signInForm.style.top=200+"px";
+		this.signInForm.style.top=50+"px";
 		this.signInForm.style.backgroundImage="url('../images/bg/log.png')";
 		this.signInForm.style.textAlign="center";
 
@@ -161,8 +161,8 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.idBox.style.height=70+"px";
 		this.idBox.style.position="absolute";
 		this.idBox.style.margin="auto";
-		this.idBox.style.left=this.width/6+"px";
-		this.idBox.style.top=this.height/7+"px";
+		this.idBox.style.left=this.width/6+10+"px";
+		this.idBox.style.top=this.height/7+30+"px";
 		this.idBox.style.fontSize="36pt";
 
 		this.pwBox.type="password";
@@ -170,8 +170,8 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.pwBox.style.height=70+"px";
 		this.pwBox.style.position="absolute";
 		this.pwBox.style.margin="auto";
-		this.pwBox.style.left=this.width/6+"px";
-		this.pwBox.style.top=this.height/7+80+"px";
+		this.pwBox.style.left=this.width/6+10+"px";
+		this.pwBox.style.top=this.height/7+110+"px";
 		this.pwBox.style.fontSize="36pt";
 
 		this.btLogIn.type="button";
@@ -180,7 +180,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btLogIn.style.position="absolute";
 		this.btLogIn.style.margin="auto";
 		this.btLogIn.style.left=100+"px";
-		this.btLogIn.style.top=this.height/7+200+"px";
+		this.btLogIn.style.top=this.height/7+250+"px";
 		this.btLogIn.style.backgroundImage="url('../images/button/login.png')";
 
 		this.btSignIn.type="button";
@@ -189,7 +189,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btSignIn.style.position="absolute";
 		this.btSignIn.style.margin="auto";
 		this.btSignIn.style.left=550+"px";
-		this.btSignIn.style.top=this.height/7+200+"px";
+		this.btSignIn.style.top=this.height/7+250+"px";
 		this.btSignIn.style.backgroundImage="url('../images/button/signin.png')";
 
 		this.btBack.type="button";
@@ -198,7 +198,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btBack.style.position="absolute";
 		this.btBack.style.margin="auto";
 		this.btBack.style.left=100+"px";
-		this.btBack.style.top=this.height/7+200+"px";
+		this.btBack.style.top=this.height/7+250+"px";
 		this.btBack.style.backgroundImage="url('../images/button/back.png')";
 
 		this.btSubmit.type="button";
@@ -207,7 +207,7 @@ var winLogIn = function( mask, gameWin, stageW, stageH ){
 		this.btSubmit.style.position="absolute";
 		this.btSubmit.style.margin="auto";
 		this.btSubmit.style.left=550+"px";
-		this.btSubmit.style.top=this.height/7+200+"px";
+		this.btSubmit.style.top=this.height/7+250+"px";
 		this.btSubmit.style.backgroundImage="url('../images/button/submit.png')";
 
 
@@ -279,7 +279,7 @@ var winNotice = function( mask, gameWin, stageW, stageH ){
 		this.noticeStage.style.margin="auto";
 		this.noticeStage.style.position="absolute";
 		this.noticeStage.style.left=170+"px";
-		this.noticeStage.style.top=150+"px";
+		this.noticeStage.style.top=30+"px";
 		this.noticeStage.style.backgroundImage="url('../images/bg/board.png')";
 		this.noticeStage.style.fontSize="30pt";
 		this.noticeStage.style.fontWeight="bold";
@@ -384,8 +384,6 @@ var winSelectMode = function( mask, gameWin, stageW, stageH ){			// stage로부�
 		this.btBack = document.createElement("input");
 		this.btExit = document.createElement("input");
 	
-	
-
 		this.stage.style.width=this.width+"px";									//	div_wrapper의 style 정의
 		this.stage.style.height=this.height+"px";
 		this.stage.style.margin="0px";
@@ -406,16 +404,15 @@ var winSelectMode = function( mask, gameWin, stageW, stageH ){			// stage로부�
 		this.btMul.type="button";
 		this.btMul.style.width=300+"px";									//	멀티플레이 버튼 style 정의
 		this.btMul.style.height=300+"px";
-		this.btMul.style.top=200+"px";
 		this.btMul.style.fontSize="50pt";
-		this.btMul.style.marginTop=300+"px";
+		this.btMul.style.marginTop=100+"px";
 		this.btMul.style.backgroundImage="url('../images/button/modemul.png')";
 
 		this.btSing.type="button";
 		this.btSing.style.width=300+"px";									//	싱글플레이 버튼 style 정의
 		this.btSing.style.height=300+"px";
 		this.btSing.style.fontSize="50pt";
-		this.btSing.style.marginTop=300+"px";
+		this.btSing.style.marginTop=100+"px";
 		this.btSing.style.backgroundImage="url('../images/button/modesing.png')";
 
 		this.div_down.style.width=this.width+"px";									//	div_down의 style 정의
@@ -489,7 +486,7 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 
 	this.div_showMargin=80;
 	this.btSize=100;
-	this.imgSize=100;
+	this.imgSize=95;
 	
 	this.bt_tankArr = new Array(6);												//	탱크 선택 버튼
 
@@ -537,7 +534,6 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.backgroundImage="url('../images/bg/selbg.png')";
 		this.stage.style.display="none";
 
-
 		this.div_showP1.style.width=this.width/3+"px";									//	div_mul의 style 정의
 		this.div_showP1.style.height=this.height/2+"px";
 		this.div_showP1.style.textAlign="right";
@@ -559,8 +555,8 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.div_tankSkillP1.style.textAlign="right";
 		this.div_tankSkillP1.style.float="left";
 
-		this.img_tankP1.style.width=200+"px";
-		this.img_tankP1.style.height=200+"px";
+		this.img_tankP1.style.width=190+"px";
+		this.img_tankP1.style.height=190+"px";
 		this.img_tankP1.src="../images/effect/box.png";
 		this.img_tankP1.style.border="1px solid red";
 
@@ -599,8 +595,8 @@ var winSelectContentsMul = function( mask, gameWin, stageW, stageH ){
 		this.div_tankSkillP2.style.textAlign="left";
 		this.div_tankSkillP2.style.float="right";
 
-		this.img_tankP2.style.width=200+"px";
-		this.img_tankP2.style.height=200+"px";
+		this.img_tankP2.style.width=190+"px";
+		this.img_tankP2.style.height=190+"px";
 		this.img_tankP2.src="../images/effect/box.png";
 		this.img_tankP2.style.border="1px solid red";
 

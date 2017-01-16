@@ -38,8 +38,8 @@ var wrapper;
 var map;
 var mapPlate;
 
-var s_wid=1240;
-var s_hei=900;
+var s_wid=1200;
+var s_hei=720;
 
 
 /***********************************************************************
@@ -1305,14 +1305,14 @@ window.addEventListener("keyup", function(){
 
 window.addEventListener("mousemove", function(){
 
-	var entX=event.clientX;
-	var entY=event.clientY;
+	var entX = event.clientX;
+	var entY = event.clientY;
 
 	//console.log(entX+" , "+entY);
 
 	if ( gameTankArr[0] != undefined && !focusFlag ){
 
-		if( (entX > 1230) && mapPosX>-1760 ){
+		if( (entX > s_wid-10) && mapPosX>-1760 ){
 
 			mapLeft=-20;
 			mapTop=0;
@@ -1342,7 +1342,7 @@ window.addEventListener("mousemove", function(){
 
 		}
 
-		if( (entY > 890) && mapPosY>-1100 ){
+		if( (entY > s_hei-10) && mapPosY>-1100 ){
 
 			mapLeft=0;
 			mapTop=-10;
@@ -1373,7 +1373,7 @@ window.addEventListener("mousemove", function(){
 
 		}
 
-		if( ( (entX < 1230) && mapPosX<-1760) && ( (entX > 10) && mapPosX>0 ) &&  ( (entY < 890) && mapPosY<-1100 ) && ( (entY > 10) && mapPosY>0 ) ){
+		if( ( (entX < s_wid-10) && mapPosX<-1760) && ( (entX > 10) && mapPosX>0 ) &&  ( (entY < s_hei-10) && mapPosY<-1100 ) && ( (entY > 10) && mapPosY>0 ) ){
 
 			mapLeft=0;
 			mapTop=0;
