@@ -1312,7 +1312,7 @@ window.addEventListener("mousemove", function(){
 
 	if ( gameTankArr[0] != undefined && !focusFlag ){
 
-		if( (entX > s_wid-10) && mapPosX>-1760 ){
+		if( (entX > s_wid+100) && mapPosX>-1760 ){
 
 			mapLeft=-20;
 			mapTop=0;
@@ -1327,7 +1327,7 @@ window.addEventListener("mousemove", function(){
 
 		}
 		
-		if( (entX < 10) && mapPosX<0 ){
+		if( (entX < 100) && mapPosX<0 ){
 
 			mapLeft=20;
 			mapTop=0;
@@ -1373,7 +1373,7 @@ window.addEventListener("mousemove", function(){
 
 		}
 
-		if( ( (entX < s_wid-10) && mapPosX<-1760) && ( (entX > 10) && mapPosX>0 ) &&  ( (entY < s_hei-10) && mapPosY<-1100 ) && ( (entY > 10) && mapPosY>0 ) ){
+		if( ( (entX < s_wid+100) && mapPosX<-1760) && ( (entX > 100) && mapPosX>0 ) &&  ( (entY < s_hei-10) && mapPosY<-1100 ) && ( (entY > 10) && mapPosY>0 ) ){
 
 			mapLeft=0;
 			mapTop=0;

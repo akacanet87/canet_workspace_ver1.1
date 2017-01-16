@@ -1017,7 +1017,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 	this.stage;
 	this.width=stageW;
 	this.height=stageH;
-	this.btSize=100;
+	this.btSize=90;
 	this.bt_itemArr = new Array();
 	this.itemCartArr = new Array(4);
 
@@ -1047,9 +1047,9 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		this.stage.style.display="none";
 
 		this.itemDiv.style.width=this.width*7/8+"px";
-		this.itemDiv.style.height=this.height*2/3+"px";
+		this.itemDiv.style.height=this.height*1/2+"px";
 		this.itemDiv.style.margin="auto";
-		this.itemDiv.style.marginTop=80+"px";
+		this.itemDiv.style.marginTop=30+"px";
 
 		this.itemListDiv.style.width=this.width*5/8+"px";
 		this.itemListDiv.style.height=this.height*3/5+"px";
@@ -1067,8 +1067,8 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 					this.bt_itemArr[a].style.width=this.btSize+"px";
 					this.bt_itemArr[a].style.height=this.btSize+"px";
 					this.bt_itemArr[a].style.position="absolute";
-					this.bt_itemArr[a].style.left=180+(120*b)+"px";
-					this.bt_itemArr[a].style.top=120+(130*a)+"px";
+					this.bt_itemArr[a].style.left=250+(110*b)+"px";
+					this.bt_itemArr[a].style.top=100+(110*a)+"px";
 					this.bt_itemArr[a].style.backgroundImage="url("+itemArr[a].itemImg+")";
 
 					this.itemListDiv.appendChild(this.bt_itemArr[a]);
@@ -1080,8 +1080,8 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 					this.itemImg.style.width=this.btSize+"px";
 					this.itemImg.style.height=this.btSize+"px";
 					this.itemImg.style.position="absolute";
-					this.itemImg.style.left=180+(120*b)+"px";
-					this.itemImg.style.top=120+(130*a)+"px";
+					this.itemImg.style.left=250+(110*b)+"px";
+					this.itemImg.style.top=100+(110*a)+"px";
 					this.itemImg.src="../images/block/block.png";
 
 					this.itemListDiv.appendChild(this.itemImg);
@@ -1101,11 +1101,11 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 
 			this.itemCartArr[a] = document.createElement("img");
 
-			this.itemCartArr[a].style.width=this.imgSize+"px";
-			this.itemCartArr[a].style.height=this.imgSize+"px";
+			this.itemCartArr[a].style.width=this.btSize+"px";
+			this.itemCartArr[a].style.height=this.btSize+"px";
 			this.itemCartArr[a].style.position="absolute";
-			this.itemCartArr[a].style.left=180+(110*a)+"px";
-			this.itemCartArr[a].style.top=650+"px";
+			this.itemCartArr[a].style.left=250+(110*a)+"px";
+			this.itemCartArr[a].style.top=570+"px";
 			this.itemCartArr[a].src="";
 			this.itemCartArr[a].style.border="1px solid red";
 
@@ -1114,7 +1114,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		}
 
 		this.itemInfoDiv.style.width=this.width*2/8+"px";
-		this.itemInfoDiv.style.height=this.height*3/5+"px";
+		this.itemInfoDiv.style.height=this.height/3+"px";
 		this.itemInfoDiv.style.margin="auto";
 		this.itemInfoDiv.style.marginTop=30+"px";
 		this.itemInfoDiv.style.float="left";
@@ -1124,7 +1124,7 @@ var winItemShop = function( mask, gameWin, stageW, stageH ){
 		//this.itemInfo.style.margin="auto";
 		this.itemInfo.style.position="absolute";
 		this.itemInfo.style.left=880+"px";
-		this.itemInfo.style.top=200+"px";
+		this.itemInfo.style.top=100+"px";
 		this.itemInfo.style.backgroundImage="url('../images/bg/board1.png')";
 		this.itemInfo.style.fontSize="30pt";
 		this.itemInfo.style.fontWeight="bold";
